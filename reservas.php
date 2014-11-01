@@ -8,9 +8,8 @@ header("Pragma: no-cache");
 //$data = date("Y-m-d");  /* =$_GET["data"] */
 $data = $_GET["data"];
 $data = implode("-",array_reverse(explode("/",$data)));
-
 $codsetor = $_GET["setor"];
-//$codsetor = 1; 
+//$codsetor = 1;
 $res = mysql_query("SELECT `horario_abertura`, `horario_encerramento` FROM `setor` WHERE `cod_setor`='$codsetor'");
 //$total = mysqli_num_rows($res);
 $encerramento;
@@ -49,6 +48,13 @@ foreach ($sala as $s) {
 		$inicio= explode(":", $dados[0]);
 		$fim= explode(":", $dados[1]);
 		$username=$dados[2];
+		$dif= $fim[0]-$inicio[0];
+		$aux= $inicio[0];
+		while($dif>0){
+			$tabela[$aux][$s]=$username;
+			$aux++;
+			$dif--;
+		}
 	}
 }
 
