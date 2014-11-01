@@ -5,8 +5,9 @@ header("Expires: {$gmtDate} GMT");
 header("Last-Modified: {$gmtDate} GMT");
 header("Cache-Control: no-cache, must-revalidade");
 header("Pragma: no-cache");
-$data = date("Y-m-d");  /* =$_GET["data"] */
-
+//$data = date("Y-m-d");  /* =$_GET["data"] */
+$data = $_GET["data"];
+$data = implode("-",array_reverse(explode("/",$data)));
 
 $codsetor = $_GET["setor"];
 //$codsetor = 1; 
@@ -56,9 +57,6 @@ echo " <thead>";
 echo "  <tr>";
 echo "   <th>Hora</th>";
 
-echo $sala[0];
-echo $sala[1];
-echo $sala[3];
 
 foreach ($sala as $s) {
 	echo "   <th>sala $s</th>";
@@ -74,7 +72,8 @@ for($i=$a[0];$i<$e[0];$i++){
 		if($tabela[$i][$s] == "livre"){
 			echo "   <td><a href=\"solicita-reserva.html\">reserve</a></td>";
 		}else{
-			echo "   <td>$tabela[$i][$s]</td>";
+			$saida = $tabela[$i][$s];
+			echo "   <td>$saida</td>";
 		}
 	}
 	echo "  </tr>";
