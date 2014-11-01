@@ -8,8 +8,8 @@ header("Pragma: no-cache");
 $data = date("Y-m-d");  /* =$_GET["data"] */
 
 
-//$codsetor = $_GET["setor"];
-$codsetor = 1; 
+$codsetor = $_GET["setor"];
+//$codsetor = 1; 
 $res = mysql_query("SELECT `horario_abertura`, `horario_encerramento` FROM `setor` WHERE `cod_setor`='$codsetor'");
 //$total = mysqli_num_rows($res);
 $encerramento;
