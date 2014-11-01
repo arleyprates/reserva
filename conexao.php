@@ -9,12 +9,13 @@ $banco = 'siges';
 
 if($conexao = mysql_connect($servidor, $usuario, $senha))
 {
-	echo "Conexão feita com sucesso!!";
+	echo "Conexao feita com sucesso!!";
+	mysql_select_db($banco, $conexao);
 }
 
 else 
 {
-	echo "Não foi possível conectar com o servidor";
+	echo "Nao foi possivel conectar com o servidor";
 }
 
 ?>
