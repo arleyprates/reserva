@@ -1,18 +1,26 @@
 <?php 
 
-$servidor = "http://192.168.141.94";
-$usuario = "root";
-$senha = "123"
-$banco = "siges";
+$servidor = '192.168.141.94';
+$usuario = 'root';
+$senha = '123';
+//$banco = "siges";
+$conexao = mysql_connect($servidor, $usuario, $senha);
 
-if($conexao = mysqli_connect($servidor, $usuario, $senha, $banco))
+if($conexao)
 {
 	echo "Conexão feita com sucesso!!";
 }
 
-else 
-{
-	echo "Não foi possível conectar com o servidor";
-}
+$banco = mysql_select_db('siges', $conexao);
 
-mysqli_close($conexao);
+if($banco)
+{
+	echo "Conexão feita com sucesso";
+}
+else
+{
+
+	echo "Não foi possivel conectar ao banco de dados";
+} 
+
+mysql_close($conexao);
