@@ -15,7 +15,8 @@
 
 </style>
 -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<script src="../js/jquery-1.11.1.min.js" type="text/javascript"></script>  
 
 
 <script type="text/javascript">
@@ -100,6 +101,8 @@ function numeros(){
 
 
 //<!-- Fim do JavaScript que validará os campos obrigatórios! -->
+<?php header('Content-type: text/html; charset=UTF-8'); ?>
+
 </script>
 </head>
 <div class="jumbotron">
@@ -154,7 +157,20 @@ function numeros(){
          </select>
         <span class="style1">*      </span></td>
     </tr>
-   
+    
+    <tr>
+      <td>SIAP:</td>
+      <td><input name="SIAP" type="text" id="SIAP" maxlength="50" />
+        <span class="style1">*</span></td>
+    </tr>
+
+        <tr>
+      <td>Código de departamento:</td>
+      <td><input name="codepto" type="text" id="codepto" maxlength="50" />
+        <span class="style1">*</span></td>
+    </tr>
+
+
 
      
     <tr>
@@ -168,5 +184,56 @@ function numeros(){
     </tr>
   </table>
 </form>
+
+<?php 
+// RECEBENDO OS DADOS PREENCHIDOS DO FORMULÁRIO !
+
+$pnome  = $_POST ["pnome"]; //atribuição do campo "nome" vindo do formulário para variavel  
+$unome  = $_POST ["unome"]; //atribuição do campo "email" vindo do formulário para variavel
+$email  = $_POST ["email"]; //atribuição do campo "ddd" vindo do formulário para variavel
+$cpf  = $_POST ["cpf"];  //atribuição do campo "telefone" vindo do formulário para variavel
+$senha  = $_POST ["senha"];  //atribuição do campo "endereco" vindo do formulário para variavel
+$SIAP = $_POST ["SIAP"];  //atribuição do campo "cidade" vindo do formulário para variavel
+$codepto  = $_POST ["codepto"];  //atribuição do campo "estado" vindo do formulário para variavel  //atribuição do campo "bairro" vindo do formulário para 
+$tipo_usr = $_POST["professor"];
+
+
+if( ((strcmp ($pnome, "") != 0) && (strcmp ($unome, "") != 0) && (strcmp ($email, "") != 0) && (strcmp ($cpf, "") != 0) && (strcmp ($senha, "") != 0) && (strcmp ($SIAP, "") != 0) && (strcmp ($coddepto, "") != 0) && ))
+{
+
+  $query = "INSERT INTO `usuarios` ( `cpf` , `pnome` , `unome`, `senha` , `email`) 
+  VALUES ('$cpf', '$pnome', '$unome', '$senha', '$email')";
+  
+  if(mysql_query($query, $conexao))
+{
+  echo ("Os dados foram salvos com sucesso em nosso banco de dados");
+}
+
+else 
+{
+  echo("Houve erro no cadastro de usuário");
+}
+
+  if(strcmp($tipo_usr, "Professor") == 0 )
+  {
+      $query = "INSERT INTO `professor` ( `cod_depto` , `siap` , `cpf_prof`) 
+    VALUES ('$cpf', '$SIAP', '$codepto')";
+  
+  }
+
+
+}
+
+if(mysql_query($query, $conexao))
+{
+  echo ("Os dados foram salvos com sucesso em nosso banco de dados");
+}
+
+else 
+{
+  echo("Houve erro no cadastro de usuário");
+}
+?>
+
 </body>
 </html>
