@@ -3,7 +3,7 @@
 
 include('erro.php');
 
-$servidor = '192.168.141.94';
+$servidor = 'localhost';
 $usuario = 'root';
 $senha = '123';
 $banco = 'siges';
