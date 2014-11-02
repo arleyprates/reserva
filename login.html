@@ -19,6 +19,26 @@
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="js/ie-emulation-modes-warning.js"></script>
+    <script>
+    function loadXMLDoc(){
+      var xmlhttp;
+        if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+            alert("Objeto criado");
+        }else{// code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.open("POST","valida.php",true);
+        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xmlhttp.send();
+        alert("Enviada com Sucesso!");
+        xmlhttp.onreadystatechange = function(){
+          if (this.readyState == 4 && this.status == 200){
+            alert("Sucesso!");
+          }
+        }
+    }
+    </script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -33,7 +53,7 @@
 
       <form class="form-signin" role="form" method="post" action="valida.php">
         <h2 class="form-signin-heading">Please sign in</h2>
-        <input class="form-control" placeholder="CPF" required autofocus name="cpf">
+        <input type="text" class="form-control" placeholder="CPF" required autofocus name="cpf">
         <input type="password" class="form-control" placeholder="Password" required name="password">
         <label class="checkbox">
           <input type="checkbox" value="remember-me"> Remember me
