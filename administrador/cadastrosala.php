@@ -9,7 +9,6 @@ if (empty($_SESSION['user'])){
 <head>
 <meta http-equiv="Content-Type: content=text/html; charset=ISO-8859-1" />
 <title>Cadastro de usuários</title>
-
 <!--
 <style type="text/css">
 
@@ -135,16 +134,31 @@ function numeros(){
          </select>
         <span class="style1">*      </span></td>
     </tr>
-  
       <td colspan="2"><p>
         <input name="baixar"  type="submit" id="baixarlicitacao" value="Confirmar" /> <!-- type="submit" --> 
-        
           <input name="limpar" type="reset" id="limpar" value="Cancelar" />
-          <br />
+          <br/>
           <span class="style1">* Campos com * s&atilde;o obrigat&oacute;rios!          </span></p>
-      <p>&nbsp; </p></td>
+      <p>&nbsp;</p></td>
     </tr>
   </table>
 </form>
+  <div>
+    <input type="button" id="btnLeft" value="&lt;&lt;" />
+    <input type="button" id="btnRight" value="&gt;&gt;" />
+  </div>
+    <select id="rightValues" size="4" multiple>
+        <?php 
+          include("../conexao.php");
+          include("../erro.php");
+          $sql = mysql_query("SELECT * FROM recurso");
+          $i = 0;
+          while ($result = mysql_fetch_array($sql)){
+            printf ("<option value=\"$i\">%s", $result['nome'], "</option>");
+            $i++;
+          }
+          include("../close_conexao.php");
+        ?>
+    </select>
 </body>
 </html>
