@@ -56,9 +56,9 @@ if (empty($_SESSION['user'])){
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Setor <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="setor-aula.html">Aula</a></li>
-                <li><a href="setor-aula.html">Laboratório</a></li>
-                <li><a href="setor-aula.html">Reunião</a></li>
+                <li><a href="../setor-aula.html">Aula</a></li>
+                <li><a href="../setor-aula.html">Laboratório</a></li>
+                <li><a href="../setor-aula.html">Reunião</a></li>
               </ul>
             </li>
             <li class="dropdown">
@@ -76,7 +76,7 @@ if (empty($_SESSION['user'])){
         </div>
         <div class="navbar-collapse collapse">
           <div class="navbar-collapse collapse navbar-right">
-            <button type="submit" class="btn btn-warning"><a href="../logout.php">Logout</a></button>
+            <a href="../logout.php"><button type="submit" class="btn btn-warning">Logout</button></a>
         </div><!--/.navbar-collapse -->
         </div><!--/.navbar-collapse -->
       </div>
