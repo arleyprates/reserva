@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 if (empty($_SESSION['user'])){
@@ -50,77 +49,83 @@ text-align: center;
 }
 </style>
 <script type="text/javascript">
-function validaCampo()
-{
-if(document.cadastro.noraz.value=="")
-{
-alert("O Campo nome ou Razão Social é obrigatório!");
-return false;
-}
-else
-if(document.cadastro.email.value=="")
-{
-alert("O Campo email é obrigatório!");
-return false;
-}
-else
-if(document.cadastro.endereco.value=="")
-{
-alert("O Campo endereço é obrigatório!");
-return false;
-}
-else
-if(document.cadastro.cidade.value=="")
-{
-alert("O Campo Cidade é obrigatório!");
-return false;
-}
-else
-if(document.cadastro.estado.value=="")
-{
-alert("O Campo Estado é obrigatório!");
-return false;
-}
-else
-if(document.cadastro.cpfcnpj.value=="")
-{
-alert("O Campo Bairro é obrigatório!");
-return false;
-}
-else
-if(document.cadastro.ddd.value=="")
-{
-alert("O Campo DDD é obrigatório!");
-return false;
-}
-else
-if(document.cadastro.telefone.value=="")
-{
-alert("O Campo Telefone é obrigatório!");
-return false;
-}
-else
-return true;
-}
-function letras(){
-tecla = event.keyCode;
-if (tecla >= 48 && tecla <= 57){
-alert("Digite apenas caracteres neste campo");
-return false;
-}else{
-return true;
-}
-}
-function numeros(){
-tecla = event.keyCode;
-if ((tecla >= 65 && tecla <= 90) || (tecla >= 97 && tecla <=122)) {
-alert("Digite apenas números neste campo");
-return false;
-}
-else{
-return true;
-}
-}
+  function validaCampo()
+  {
+  if(document.cadastro.noraz.value=="")
+  {
+  alert("O Campo nome ou Razão Social é obrigatório!");
+  return false;
+  }
+  else
+  if(document.cadastro.email.value=="")
+  {
+  alert("O Campo email é obrigatório!");
+  return false;
+  }
+  else
+  if(document.cadastro.endereco.value=="")
+  {
+  alert("O Campo endereço é obrigatório!");
+  return false;
+  }
+  else
+  if(document.cadastro.cidade.value=="")
+  {
+  alert("O Campo Cidade é obrigatório!");
+  return false;
+  }
+  else
+  if(document.cadastro.estado.value=="")
+  {
+  alert("O Campo Estado é obrigatório!");
+  return false;
+  }
+  else
+  if(document.cadastro.cpfcnpj.value=="")
+  {
+  alert("O Campo Bairro é obrigatório!");
+  return false;
+  }
+  else
+  if(document.cadastro.ddd.value=="")
+  {
+  alert("O Campo DDD é obrigatório!");
+  return false;
+  }
+  else
+  if(document.cadastro.telefone.value=="")
+  {
+  alert("O Campo Telefone é obrigatório!");
+  return false;
+  }
+  else
+  return true;
+  }
+  function letras(){
+  tecla = event.keyCode;
+  if (tecla >= 48 && tecla <= 57){
+  alert("Digite apenas caracteres neste campo");
+  return false;
+  }else{
+  return true;
+  }
+  }
+  function numeros(){
+    tecla = event.keyCode;
+    if ((tecla >= 65 && tecla <= 90) || (tecla >= 97 && tecla <=122)) {
+      alert("Digite apenas números neste campo");
+      return false;
+    }else{
+     return true;
+    }
+  }
+    jQuery(document).ready(function() {
+      jQuery("#baixarlicitacao").click(function(e) {
+      var item = $("#leftValues").val();
+      alert(item);
+      return false;
+      });
+    });
 </script>
 </head>
 <body>
@@ -166,82 +171,84 @@ return true;
 </div>
 </div>
 <div class="container">
-<div class="jumbotron">
-<h1 style="color:#FFFFFF">Cadastro de Salas</h1>
-<p style="color:#FFFFFF">Preencha as informações no formulário abaixo</p>
+  <div class="jumbotron">
+    <h1 style="color:#FFFFFF">Cadastro de Salas</h1>
+    <p style="color:#FFFFFF">Preencha as informações no formulário abaixo</p>
+  </div>
+  <div class="container">
+    <form id="cadastro" name="cadastro" method="post" action="cadastrasala.php"> <!-- onsubmit="baixarLicitacao(); " -->
+      <table width="625" border="0">
+        <tr>
+          <td width="69">Número da sala:</td>
+          <td width="546"><input name="nr_sala" type="text" id="nr_sala" size="20" maxlength="60" onkeypress="return numeros();" />
+            <span class="style1">*</span>
+          </td>
+        </tr>
+        <tr>
+          <td width="69">Capacidade:</td>
+          <td width="546"><input name="capacidade" type="text" id="capacidade" size="20" maxlength="60" />
+          <span class="style1">*</span></td>
+        </tr>
+        <tr>
+          <td>Tipo de Sala:</td>
+          <td>
+            <select name="tipodesala" id="tipodesala">
+              <option>Escolha uma tipo</option>
+              <option value="1">Laboratório de Aulas</option>
+              <option value="2">Sala de Aula</option>
+              <option value="3">Auditório</option>
+            </select>
+            <span class="style1">* </span>
+          </td>
+        </tr>
+      </table>
+      <section class="container">
+        <div>
+          <select id="leftValues" size="5" multiple></select>
+        </div>
+        <div>
+          <input type="button" id="btnLeft" value="&lt;&lt;" />
+          <input type="button" id="btnRight" value="&gt;&gt;" />
+        </div>
+        <div>
+          <select id="rightValues" size="5" multiple>
+            <?php
+            include("../conexao.php");
+            include("../erro.php");
+            $sql = mysql_query("SELECT * FROM recurso");
+            $i = 0;
+            while ($result = mysql_fetch_array($sql)){
+            printf ("<option value=\"$result[nome]\">%s", $result['nome'], "</option>");
+            $i++;
+            }
+            include("../close_conexao.php");
+            ?>
+          </select>
+        </div>
+      </section>
+      <td colspan="2"><p>
+        <input name="baixar" type="submit" id="baixarlicitacao" value="Confirmar" /> <!-- type="submit" -->
+        <input name="limpar" type="reset" id="limpar" value="Cancelar" />
+        <br/>
+        <span class="style1">* Campos com * s&atilde;o obrigat&oacute;rios! </span></p>
+      </td>
+    </form>
+  </div>
 </div>
-<div class="container">
-<form id="cadastro" name="cadastro" method="post" action="cadastrasala.php"> <!-- onsubmit="baixarLicitacao(); " -->
-<table width="625" border="0">
-<tr>
-<td width="69">Número da sala:</td>
-<td width="546"><input name="nr_sala" type="text" id="nr_sala" size="20" maxlength="60" onkeypress="return numeros();" />
-<span class="style1">*</span></td>
-</tr>
-<tr>
-<td width="69">Capacidade:</td>
-<td width="546"><input name="capacidade" type="text" id="capacidade" size="20" maxlength="60" />
-<span class="style1">*</span></td>
-</tr>
-<tr>
-<td>Tipo de Sala:</td>
-<td><select name="tipodesala" id="tipodesala">
-<option>Escolha uma tipo</option>
-<option value="1">Laboratório de Aulas</option>
-<option value="2">Sala de Aula</option>
-<option value="3">Auditório</option>
-</select>
-<span class="style1">* </span></td>
-</tr>
-<td colspan="2"><p>
-<input name="baixar" type="submit" id="baixarlicitacao" value="Confirmar" /> <!-- type="submit" -->
-<input name="limpar" type="reset" id="limpar" value="Cancelar" />
-<br/>
-<span class="style1">* Campos com * s&atilde;o obrigat&oacute;rios! </span></p>
-<p>&nbsp;</p></td>
-</tr>
-</table>
-</form>
-</div>
-<section class="container">
-<div>
-<select id="leftValues" size="5" multiple></select>
-</div>
-<div>
-<input type="button" id="btnLeft" value="&lt;&lt;" />
-<input type="button" id="btnRight" value="&gt;&gt;" />
-</div>
-<div>
-<select id="rightValues" size="5" multiple>
-<?php
-include("../conexao.php");
-include("../erro.php");
-$sql = mysql_query("SELECT * FROM recurso");
-$i = 0;
-while ($result = mysql_fetch_array($sql)){
-printf ("<option value=\"$i\">%s", $result['nome'], "</option>");
-$i++;
-}
-include("../close_conexao.php");
-?>
-</select>
-</div>
-</section>
 <script>
-$( "#btnLeft" ).click(function(){
-var selectedItem = $("#rightValues option:selected");
-$("#leftValues").append(selectedItem);
-});
-$( "#btnRight" ).click(function () {
-var selectedItem = $("#leftValues option:selected");
-$("#rightValues").append(selectedItem);
-});
-$( "#rightValues" ).change(function () {
-var selectedItem = $("#rightValues option:selected");
-$("#txtRight").val(selectedItem.text());
-});
+  $( "#btnLeft" ).click(function(){
+  var selectedItem = $("#rightValues option:selected");
+  $("#leftValues").append(selectedItem);
+  });
+  $( "#btnRight" ).click(function () {
+  var selectedItem = $("#leftValues option:selected");
+  $("#rightValues").append(selectedItem);
+  });
+  $( "#rightValues" ).change(function () {
+  var selectedItem = $("#rightValues option:selected");
+  $("#txtRight").val(selectedItem.text());
+  });
 </script>
-</div>
 <script src="../js/ie10-viewport-bug-workaround.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/docs.min.js"></script>
