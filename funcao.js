@@ -1,8 +1,15 @@
 function obtemData(data){
 	if(data){
-		var set = document.getElementById("set");
-		var setor = set.options[setor.selectedIndex].value;
-		var url="reservas.php?data="+data+"&setor="+setor;
+/*		var set = document.getElementById("set");
+		if(set == null)
+		{
+			alert("Deu merda!!");
+		}
+
+		//var setor = set.options[setor.selectedIndex].value; //problema aqui!!
+		//var url="reservas.php?data="+data+"&setor="+setor;
+		//console.log("url");
+*/		var url="reservas.php?data="+data;
 		requisicaoHTTP("GET",url,true);
 	}
 }

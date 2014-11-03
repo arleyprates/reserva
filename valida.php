@@ -7,7 +7,8 @@ $password = $_POST['password'];
 
 $sql = mysql_query("SELECT PNOME, UNOME, SENHA FROM usuario WHERE CPF = $cpf");
 $result = mysql_fetch_array($sql);
-	$nome = $result[0];
+echo $result[2];	
+$nome = $result[0];
 	if ($password == $result[2]){
 		$sqladm = mysql_query("SELECT cpf_adm FROM moderador WHERE cpf_adm = $cpf");
 		$result = mysql_fetch_array($sqladm);

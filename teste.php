@@ -1,5 +1,5 @@
 <?php 
-include(conexao.php);
+include("conexao.php");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -143,18 +143,23 @@ include(conexao.php);
     <div class="jumbotron">
       <div class="container">
         <h1>Hello!</h1>
-        <p>This is a web application for booking  meeting rooms.</p>
+        <p><?php echo "Minha pica";?></p>
         <form action="javascript:void%200">
-          <select id="set" name="setor" size="1">
+          <select name="setor" id="set" size="1">
             <?php
-              $res = mysqli_query($conexao,"SELECT cod_setor, nome FROM setor WHERE 1");
-              $total = mysqli_num_rows($res);
-              for($i=0;$i<$total;i++){
-                $dados = mysqli_fetch_row($res);
-                $cod = $dados[0];
-                $nome = $dados[1];
-                echo "<option  value=\"$cod\">$nome</option>";
-              }
+              $res = mysql_query("SELECT cod_setor, nome FROM setor WHERE 1");
+              //$total = mysqli_num_rows($res);
+
+              //for($i=0;$i<$total;$i++){
+                
+                while($dados = mysql_fetch_array($res))
+                {
+                  $cod = $dados[0];
+                  $nome = $dados[1];
+                  $nomecorreto = utf8_encode($nome);
+                  echo "  <option  value=\"$cod\">$nomecorreto</option>";
+                }
+              //}
             ?>
           </select>
         </form>
@@ -166,40 +171,11 @@ include(conexao.php);
     	
     </div>
 
-    <div id="date" style="height:20px; line-height:20px; margin:10px 0 0 0; border:dashed 1px #666;"></div>
-    </center>
+     </center>
 
     <!-- Table -->
-    <table class="table">
-      <thead>
-          <tr>
-            <th>Hora</th>
-            <th><a href="info-sala.html">Sala 101</a></th>
-            <th><a href="info-sala.html">Sala 201</a></th>
-            <th><a href="info-sala.html">Sala 301</a></th>
-          </tr>
-        </thead>
-      <tbody>
-          <tr>
-            <td>7:00</td>
-            <td><a href="solicita-reserva.html">reserve</td></a>
-            <td><a href="solicita-reserva.html">reserve</td></a>
-            <td><a href="solicita-reserva.html">reserve</td></a>
-          </tr>
-          <tr>
-            <td>8:00</td>
-            <td><a href="reserva.html">Jacob</a></td>
-            <td><a href="reserva.html">Thornton</a></td>
-            <td><a href="reserva.html">@fat</a></td>
-          </tr>
-          <tr>
-            <td>9:00</td>
-            <td><a href="reserva.html">Larry</a></td>
-            <td><a href="reserva.html">the Bird</a></td>
-            <td><a href="reserva.html">@twitter</a></td>
-          </tr>
-        </tbody>
-    </table>
+    <div id="date" style="height:20px; line-height:20px; margin:10px 0 0 0; border:dashed 1px #666;"></div>
+   
   </div>
 </div>
  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
