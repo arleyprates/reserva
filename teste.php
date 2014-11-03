@@ -1,3 +1,6 @@
+<?php 
+include(conexao.php);
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -141,6 +144,20 @@
       <div class="container">
         <h1>Hello!</h1>
         <p>This is a web application for booking  meeting rooms.</p>
+        <form action="javascript:void%200">
+          <select id="set" name="setor" size="1">
+            <?php
+              $res = mysqli_query($conexao,"SELECT cod_setor, nome FROM setor WHERE 1");
+              $total = mysqli_num_rows($res);
+              for($i=0;$i<$total;i++){
+                $dados = mysqli_fetch_row($res);
+                $cod = $dados[0];
+                $nome = $dados[1];
+                echo "<option  value=\"$cod\">$nome</option>";
+              }
+            ?>
+          </select>
+        </form>
         <p><a class="btn btn-primary btn-lg" role="button" href="login.html">Login &raquo;</a></p>
       </div>
     </div>
