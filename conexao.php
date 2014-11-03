@@ -5,7 +5,7 @@ include('erro.php');
 
 $servidor = 'localhost';
 $usuario = 'root';
-$senha = '123';
+$senha = '';
 $banco = 'siges';
 
 if($conexao = mysql_connect($servidor, $usuario, $senha)){

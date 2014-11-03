@@ -33,7 +33,7 @@ $tipo = $_GET['criterio'];
 		$sql = mysql_query("SELECT * FROM gerencia LEFT JOIN (sala, setor) on (gerencia.id_sala = sala.nr_sala and gerencia.cod_setorg = setor.cod_setor)" );
 		while ($row = mysql_fetch_array($sql))
 	{
-        if(strcmp($row['nome'], utf8_decode($busca)) == 0) //problema aqui!!
+        if(strcmp($row['nome'], utf8_decode($busca)) == 0) 
     	{	
     		//echo $row[6];
             echo "</br>";
@@ -44,24 +44,52 @@ $tipo = $_GET['criterio'];
     		echo "Capacidade de ". $row['capacidade'] . " alunos";
             echo "</br>";
     	 }
+
+         else if(strcmp("", $busca) == 0)
+         {
+            echo "</br>";
+            echo "Nome do Setor: ". $row['nome'];
+            echo "</br>";
+            echo "Número da sala: ". $row['nr_sala'];
+            echo "</br>";
+            echo "Capacidade de ". $row['capacidade'] . " alunos";
+            echo "</br>";  
+         }
 	   }
 	}
-	else if(strcmp(utf8_decode($tipo), "Tipo de sala") == 0)
+	else if(strcmp($tipo, "Tipo") == 0)
 	{
-		$sql = mysql_query("SELECT nr_sala, capacidade, id_tipo_sala FROM sala" );
-		while ($result = mysql_fetch_array($sql))
-	{
-    	if(strcmp($result['descrição'], utf8_decode($busca)))
+		
+        $sql = mysql_query("SELECT * FROM sala, tipos_de_sala WHERE sala.id_tipo_sala = tipos_de_sala.id");
+		//$result  = mysql_fetch_array($sql);
+        //echo mysql_error();
+     while ($row = mysql_fetch_array($sql))
+    {
+        if(strcmp($row['desc'], utf8_decode($busca)) == 0)
     	{	
+            echo "</br>";
+            echo "Tipo de sala: ". utf8_encode($row['desc']);
     		echo "</br>";
-            echo $result['descrição'];
+            echo "Numero da sala: ". $row['nr_sala'];
     		echo "</br>";
-            echo $result['nr_sala'];
-    		echo "</br>";
-            echo $result['capacidade'];
+            echo "Capacidade: ". $row['capacidade'] ." alunos";
             echo "</br>";
     	 }
-	   }	
+         else 
+         {
+            if (strcmp("", $busca) == 0)
+            {
+                echo "</br>";
+                echo "Tipo de sala: ". utf8_encode($row['desc']);
+                echo "</br>";
+                echo "Numero da sala: ". $row['nr_sala'];
+                echo "</br>";
+                echo "Capacidade: ". $row['capacidade'] ." alunos";
+                echo "</br>";      
+            }
+         }
+	   }
+       	
 	}
 
 
