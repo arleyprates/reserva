@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.11.1deb2+deb7u1
+-- version 4.1.6
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Nov 01, 2014 at 11:21 PM
--- Server version: 5.5.40
--- PHP Version: 5.4.4-14+deb7u14
+-- Host: 127.0.0.1
+-- Generation Time: 04-Nov-2014 às 11:43
+-- Versão do servidor: 5.6.16
+-- PHP Version: 5.5.9
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gerencia`
+-- Estrutura da tabela `gerencia`
 --
 
 CREATE TABLE IF NOT EXISTS `gerencia` (
@@ -33,76 +33,75 @@ CREATE TABLE IF NOT EXISTS `gerencia` (
   KEY `id_sala` (`id_sala`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `gerencia`
+--
+
+INSERT INTO `gerencia` (`cod_setorg`, `id_sala`) VALUES
+(1, 144),
+(1, 140),
+(3, 25),
+(4, 50),
+(2, 9),
+(1, 50),
+(1, 25);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `modera`
+-- Estrutura da tabela `modera`
 --
 
 CREATE TABLE IF NOT EXISTS `modera` (
   `cpf_usuario` varchar(100) NOT NULL,
-  `cod_setor` int(255) NOT NULL,
+  `cod_setorm` int(255) NOT NULL,
   PRIMARY KEY (`cpf_usuario`),
-  KEY `cod_setor` (`cod_setor`)
+  KEY `cod_setor` (`cod_setorm`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `modera`
---
-
-INSERT INTO `modera` (`cpf_usuario`, `cod_setor`) VALUES
-('22', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `moderador`
+-- Estrutura da tabela `moderador`
 --
 
 CREATE TABLE IF NOT EXISTS `moderador` (
-  `cpf_mod` varchar(255) NOT NULL,
-  `cpf_adm` varchar(100) NOT NULL,
+  `cpf_mod` varchar(255) NOT NULL DEFAULT '',
+  `cpf_adm` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`cpf_mod`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `moderador`
+-- Extraindo dados da tabela `moderador`
 --
 
 INSERT INTO `moderador` (`cpf_mod`, `cpf_adm`) VALUES
-('22', ''),
-('33', ''),
-('44', '22');
+('22', '22');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `professor`
+-- Estrutura da tabela `professor`
 --
 
 CREATE TABLE IF NOT EXISTS `professor` (
   `cod_depto` varchar(250) NOT NULL,
   `siap` varchar(100) NOT NULL,
-  `cpf_prof` varchar(100) NOT NULL
+  `cpf_prof` varchar(100) NOT NULL,
+  KEY `cpf_prof` (`cpf_prof`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `professor`
+-- Extraindo dados da tabela `professor`
 --
 
 INSERT INTO `professor` (`cod_depto`, `siap`, `cpf_prof`) VALUES
-('1', '20', ''),
-('1', '30', ''),
-('2', '40', ''),
-('2', '50', ''),
-('3', '60', ''),
-('1', '1', '1'),
-('015615616', '21313', '213123');
+('2', '12345', '40');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `recurso`
+-- Estrutura da tabela `recurso`
 --
 
 CREATE TABLE IF NOT EXISTS `recurso` (
@@ -114,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `recurso` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `recurso`
+-- Extraindo dados da tabela `recurso`
 --
 
 INSERT INTO `recurso` (`codigo`, `nome`, `categoria`, `situacao`) VALUES
@@ -129,11 +128,11 @@ INSERT INTO `recurso` (`codigo`, `nome`, `categoria`, `situacao`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reserva`
+-- Estrutura da tabela `reserva`
 --
 
 CREATE TABLE IF NOT EXISTS `reserva` (
-  `data_reserva` varchar(255) NOT NULL,
+  `data_reserva` date NOT NULL,
   `horario_inicio` date NOT NULL,
   `horario_fim` date NOT NULL,
   `cpf_usr` varchar(100) NOT NULL,
@@ -144,51 +143,51 @@ CREATE TABLE IF NOT EXISTS `reserva` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `reserva`
+-- Extraindo dados da tabela `reserva`
 --
 
 INSERT INTO `reserva` (`data_reserva`, `horario_inicio`, `horario_fim`, `cpf_usr`, `num_sala`, `moderacao`) VALUES
-('18/10/2014', '0000-00-00', '0000-00-00', '60', 5, 0),
-('20/10/2014', '0000-00-00', '0000-00-00', '40', 7, 0),
-('21/10/2014', '0000-00-00', '0000-00-00', '60', 9, 0),
-('25/10/2014', '0000-00-00', '0000-00-00', '44', 2, 0),
-('29/10/2014', '0000-00-00', '0000-00-00', '33', 10, 0);
+('0000-00-00', '0000-00-00', '0000-00-00', '60', 5, 0),
+('0000-00-00', '0000-00-00', '0000-00-00', '40', 7, 0),
+('0000-00-00', '0000-00-00', '0000-00-00', '60', 9, 0),
+('0000-00-00', '0000-00-00', '0000-00-00', '44', 2, 0),
+('0000-00-00', '0000-00-00', '0000-00-00', '33', 10, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sala`
+-- Estrutura da tabela `sala`
 --
 
 CREATE TABLE IF NOT EXISTS `sala` (
   `nr_sala` int(255) NOT NULL,
   `capacidade` varchar(100) NOT NULL,
-  `id_tipo_sala` int(11) NOT NULL,
+  `id_tipo_sala` int(11) DEFAULT NULL,
   PRIMARY KEY (`nr_sala`),
   KEY `id_tipo_sala` (`id_tipo_sala`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `sala`
+-- Extraindo dados da tabela `sala`
 --
 
 INSERT INTO `sala` (`nr_sala`, `capacidade`, `id_tipo_sala`) VALUES
-(1, '100', 1),
 (2, '50', 2),
 (3, '60', 2),
 (4, '90', 2),
 (5, '50', 2),
-(6, '10', 1),
-(7, '80', 1),
-(8, '120', 3),
+(7, '80', NULL),
 (9, '100', 2),
 (10, '20', 3),
-(147, '50', 1);
+(25, '100', 2),
+(50, '200', 3),
+(140, '70', 1),
+(144, '50', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `setor`
+-- Estrutura da tabela `setor`
 --
 
 CREATE TABLE IF NOT EXISTS `setor` (
@@ -200,18 +199,19 @@ CREATE TABLE IF NOT EXISTS `setor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `setor`
+-- Extraindo dados da tabela `setor`
 --
 
 INSERT INTO `setor` (`cod_setor`, `nome`, `horario_abertura`, `horario_encerramento`) VALUES
 (1, 'Graduação', '08:00', '21:00'),
 (2, 'Pós-Graduação', '08:00', '21:00'),
-(3, 'Geral', '07:00', '23:00');
+(3, 'Extensão', '07:00', '23:00'),
+(4, 'Tecnológico', '08:00', '12:00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipos_de_sala`
+-- Estrutura da tabela `tipos_de_sala`
 --
 
 CREATE TABLE IF NOT EXISTS `tipos_de_sala` (
@@ -221,19 +221,18 @@ CREATE TABLE IF NOT EXISTS `tipos_de_sala` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tipos_de_sala`
+-- Extraindo dados da tabela `tipos_de_sala`
 --
 
 INSERT INTO `tipos_de_sala` (`id`, `desc`) VALUES
 (1, 'Laboratório'),
 (2, 'Sala de aula'),
-(3, 'Auditório'),
-(4, 'va tomar no cu porra');
+(3, 'Auditório');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuario`
+-- Estrutura da tabela `usuario`
 --
 
 CREATE TABLE IF NOT EXISTS `usuario` (
@@ -246,12 +245,11 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `usuario`
+-- Extraindo dados da tabela `usuario`
 --
 
 INSERT INTO `usuario` (`cpf`, `pnome`, `unome`, `senha`, `email`) VALUES
 ('015615616', 'Arley', 'Prates', '1q23', 'arleyprates@gmail.com'),
-('1', 'a', 'a', 'a', 'a'),
 ('11111111111', 'Bruno ', 'Ramos', 'blabla', 'brunao@gmail.com'),
 ('12345678', 'Madson', 'Araujo', 'souviadinho', 'madsonra@dcc.ufba.br'),
 ('20', 'Daniela', 'Claro', '123', 'aaa'),
@@ -269,7 +267,7 @@ INSERT INTO `usuario` (`cpf`, `pnome`, `unome`, `senha`, `email`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `utiliza`
+-- Estrutura da tabela `utiliza`
 --
 
 CREATE TABLE IF NOT EXISTS `utiliza` (
@@ -284,33 +282,46 @@ CREATE TABLE IF NOT EXISTS `utiliza` (
 --
 
 --
--- Constraints for table `gerencia`
+-- Limitadores para a tabela `gerencia`
 --
 ALTER TABLE `gerencia`
   ADD CONSTRAINT `cod_setorg` FOREIGN KEY (`cod_setorg`) REFERENCES `setor` (`cod_setor`),
   ADD CONSTRAINT `id_sala` FOREIGN KEY (`id_sala`) REFERENCES `sala` (`nr_sala`);
 
 --
--- Constraints for table `modera`
+-- Limitadores para a tabela `modera`
 --
 ALTER TABLE `modera`
-  ADD CONSTRAINT `cod_setor` FOREIGN KEY (`cod_setor`) REFERENCES `setor` (`cod_setor`);
+  ADD CONSTRAINT `cod_setor` FOREIGN KEY (`cod_setorm`) REFERENCES `setor` (`cod_setor`),
+  ADD CONSTRAINT `cod_setorm` FOREIGN KEY (`cod_setorm`) REFERENCES `setor` (`cod_setor`);
 
 --
--- Constraints for table `reserva`
+-- Limitadores para a tabela `moderador`
+--
+ALTER TABLE `moderador`
+  ADD CONSTRAINT `cpf_mod` FOREIGN KEY (`cpf_mod`) REFERENCES `usuario` (`cpf`);
+
+--
+-- Limitadores para a tabela `professor`
+--
+ALTER TABLE `professor`
+  ADD CONSTRAINT `cpf_prof` FOREIGN KEY (`cpf_prof`) REFERENCES `usuario` (`cpf`);
+
+--
+-- Limitadores para a tabela `reserva`
 --
 ALTER TABLE `reserva`
   ADD CONSTRAINT `cpf_usr` FOREIGN KEY (`cpf_usr`) REFERENCES `usuario` (`cpf`),
   ADD CONSTRAINT `num_sala` FOREIGN KEY (`num_sala`) REFERENCES `sala` (`nr_sala`);
 
 --
--- Constraints for table `sala`
+-- Limitadores para a tabela `sala`
 --
 ALTER TABLE `sala`
   ADD CONSTRAINT `id_tipo_sala` FOREIGN KEY (`id_tipo_sala`) REFERENCES `tipos_de_sala` (`id`);
 
 --
--- Constraints for table `utiliza`
+-- Limitadores para a tabela `utiliza`
 --
 ALTER TABLE `utiliza`
   ADD CONSTRAINT `codigo_recurso` FOREIGN KEY (`codigo_recurso`) REFERENCES `recurso` (`codigo`),
