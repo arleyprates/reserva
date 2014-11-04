@@ -31,7 +31,7 @@ font-size: x-small;
 -->
 <style rel="stylesheet" type="text/css">
 SELECT, INPUT[type="text"] {
-width: 200px;
+width: 160px;
 box-sizing: border-box;
 }
 SECTION {
@@ -49,66 +49,49 @@ text-align: center;
 }
 </style>
 <script type="text/javascript">
-  function validaCampo()
-  {
-  if(document.cadastro.noraz.value=="")
-  {
-  alert("O Campo nome ou Razão Social é obrigatório!");
-  return false;
-  }
-  else
-  if(document.cadastro.email.value=="")
-  {
-  alert("O Campo email é obrigatório!");
-  return false;
-  }
-  else
-  if(document.cadastro.endereco.value=="")
-  {
-  alert("O Campo endereço é obrigatório!");
-  return false;
-  }
-  else
-  if(document.cadastro.cidade.value=="")
-  {
-  alert("O Campo Cidade é obrigatório!");
-  return false;
-  }
-  else
-  if(document.cadastro.estado.value=="")
-  {
-  alert("O Campo Estado é obrigatório!");
-  return false;
-  }
-  else
-  if(document.cadastro.cpfcnpj.value=="")
-  {
-  alert("O Campo Bairro é obrigatório!");
-  return false;
-  }
-  else
-  if(document.cadastro.ddd.value=="")
-  {
-  alert("O Campo DDD é obrigatório!");
-  return false;
-  }
-  else
-  if(document.cadastro.telefone.value=="")
-  {
-  alert("O Campo Telefone é obrigatório!");
-  return false;
-  }
-  else
-  return true;
+  function validaCampo(){
+    if(document.cadastro.noraz.value==""){
+      alert("O Campo nome ou Razão Social é obrigatório!");
+      return false;
+    }else
+      if(document.cadastro.email.value==""){
+        alert("O Campo email é obrigatório!");
+        return false;
+      }else
+        if(document.cadastro.endereco.value==""){
+          alert("O Campo endereço é obrigatório!");
+          return false;
+        }else
+          if(document.cadastro.cidade.value==""){
+          alert("O Campo Cidade é obrigatório!");
+          return false;
+          }else
+            if(document.cadastro.estado.value==""){
+              alert("O Campo Estado é obrigatório!");
+              return false;
+            }else
+              if(document.cadastro.cpfcnpj.value==""){
+                alert("O Campo Bairro é obrigatório!");
+                return false;
+              }else
+                if(document.cadastro.ddd.value==""){
+                  alert("O Campo DDD é obrigatório!");
+                  return false;
+                }else
+                  if(document.cadastro.telefone.value==""){
+                    alert("O Campo Telefone é obrigatório!");
+                    return false;
+                  }else
+                    return true;
   }
   function letras(){
-  tecla = event.keyCode;
-  if (tecla >= 48 && tecla <= 57){
-  alert("Digite apenas caracteres neste campo");
-  return false;
-  }else{
-  return true;
-  }
+    tecla = event.keyCode;
+    if (tecla >= 48 && tecla <= 57){
+      alert("Digite apenas caracteres neste campo");
+      return false;
+    }else{
+      return true;
+    }
   }
   function numeros(){
     tecla = event.keyCode;
@@ -119,7 +102,6 @@ text-align: center;
      return true;
     }
   }
-  
 </script>
 </head>
 <body>
@@ -169,33 +151,27 @@ text-align: center;
     <p style="color:#FFFFFF">Preencha as informações no formulário abaixo</p>
   </div>
   <div class="container">
-
-  <form action="cadastrasala.php">
-    Envia Qualquer coisa: <input type="text" name="nome">
-    <input type="submit" value="Envia">
-  </form>
-
-    <form method="post" action="cadastrasala.php">
+    <form method="post" action="">
       <table width="625">
         <tr>
           <td width="69">
             Número da sala:
           </td>
-          <td width="546"><input name="nsala" type="text" size="20" maxlength="60" onkeypress="return numeros();" />
+          <td width="546"><input id="nsala" type="text" size="20" maxlength="60" onkeypress="return numeros();" />
             <span class="style1">*</span>
           </td>
         </tr>
         <tr>
           <td width="69">Capacidade:</td>
           <td width="546">
-            <input name="csala" type="text" size="20" maxlength="60" />
+            <input id="csala" type="text" size="20" maxlength="60" />
             <span class="style1">*</span>
           </td>
         </tr>
         <tr>
           <td>Tipo de Sala:</td>
           <td>
-            <select name="tiposala">
+            <select id="tiposala">
               <option disabled>Escolha uma tipo</option>
               <option value="1">Laboratório de Aulas</option>
               <option value="2">Sala de Aula</option>
@@ -214,13 +190,13 @@ text-align: center;
           <input type="button" id="btnRight" value="&gt;&gt;" />
         </div>
         <div>
-          <select id="rightValues" size="15" width="10" multiple>
+          <select id="rightValues" size="5" multiple>
             <?php
               include("../conexao.php");
               include("../erro.php");
               $sql = mysql_query("SELECT * FROM recurso");
               while ($result = mysql_fetch_array($sql)){
-                printf ("<option value=\"$result[nome] - $result[categoria]\">%s - %s", $result['nome'], $result['categoria'], "</option>");
+                printf ("<option value=\"$result[codigo]\">%s", $result['nome'], "</option>");
               }
               include("../close_conexao.php");
             ?>
@@ -228,7 +204,7 @@ text-align: center;
         </div>
       </section>
       <p>
-        <input name="baixar" type="submit" id="confirmar" value="Confirmar">
+        <input name="baixar" type="submit" id="baixarlicitacao" value="Confirmar">
         <input name="limpar" type="reset" id="limpar" value="Cancelar">
         <span class="style1">* Campos com * s&atilde;o obrigat&oacute;rios! </span>
       </p>
@@ -249,29 +225,49 @@ text-align: center;
   $("#txtRight").val(selectedItem.text());
   });
   jQuery(document).ready(function() {
-    jQuery("#confirmar").click(function(e) {
+    jQuery("#baixarlicitacao").click(function(e) {
       var item = $("#leftValues").val();
+      var nsala = $("#nsala").val();
+      var csala = $("#csala").val();
+      var tiposala = $("#tiposala").val();
       alert(item);
       jQuery.ajax({
         type: "POST",
         dataType: "json",
         url: "cadastrasala.php",
-        data: {recurso: item},
-        //data: "name=\"item\"" + item,
+        data: {recurso: item, nsala: nsala, csala: csala, tiposala: tiposala},
         success: function(item){
           alert("success");
         },
         erro: function(item) {
           alert("erro");
         },
-       
         statusCode: {
           200: function(){
             alert("sucesso!! " + item);
           }
-
         }
-      });
+      });/*
+      var nsala = $("#nsala").val();
+      var csala = $("#csala").val();
+      var tiposala = $("#tiposala").val();
+      jQuery.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "cadastrasala.php",
+        data: {nsala: nsala, csala: csala, tiposala: tiposala},
+        success: function(item){
+          alert("success");
+        },
+        erro: function(item) {
+          alert("erro");
+        },
+        statusCode: {
+          200: function(){
+            alert("sucesso!! dados!");
+          }
+        }
+      });*/
       return false;
     });
   });
