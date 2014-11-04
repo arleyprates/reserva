@@ -31,7 +31,7 @@ font-size: x-small;
 -->
 <style rel="stylesheet" type="text/css">
 SELECT, INPUT[type="text"] {
-width: 160px;
+width: 200px;
 box-sizing: border-box;
 }
 SECTION {
@@ -214,13 +214,13 @@ text-align: center;
           <input type="button" id="btnRight" value="&gt;&gt;" />
         </div>
         <div>
-          <select id="rightValues" size="5" multiple>
+          <select id="rightValues" size="15" width="10" multiple>
             <?php
               include("../conexao.php");
               include("../erro.php");
               $sql = mysql_query("SELECT * FROM recurso");
               while ($result = mysql_fetch_array($sql)){
-                printf ("<option value=\"$result[nome]\">%s", $result['nome'], "</option>");
+                printf ("<option value=\"$result[nome] - $result[categoria]\">%s - %s", $result['nome'], $result['categoria'], "</option>");
               }
               include("../close_conexao.php");
             ?>
@@ -228,7 +228,7 @@ text-align: center;
         </div>
       </section>
       <p>
-        <input name="baixar" type="submit" id="baixarlicitacao" value="Confirmar">
+        <input name="baixar" type="submit" id="confirmar" value="Confirmar">
         <input name="limpar" type="reset" id="limpar" value="Cancelar">
         <span class="style1">* Campos com * s&atilde;o obrigat&oacute;rios! </span>
       </p>
@@ -249,7 +249,7 @@ text-align: center;
   $("#txtRight").val(selectedItem.text());
   });
   jQuery(document).ready(function() {
-    jQuery("#baixarlicitacao").click(function(e) {
+    jQuery("#confirmar").click(function(e) {
       var item = $("#leftValues").val();
       alert(item);
       jQuery.ajax({
@@ -264,10 +264,12 @@ text-align: center;
         erro: function(item) {
           alert("erro");
         },
+       
         statusCode: {
           200: function(){
             alert("sucesso!! " + item);
           }
+
         }
       });
       return false;
