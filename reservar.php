@@ -45,7 +45,8 @@ if($repetir=="dia"){
 	$i=0;
 	$dia= date("w",strtotime($data."+$i days"));
 	while(($dia!=6) AND ($dia!=0)){
-		echo date("Y-m-d",strtotime($data."+$i days"));
+		$dt= date("Y-m-d",strtotime($data."+$i days"));
+		$res = mysql_query("INSERT INTO resera VALUES('$cpf,'$sala','$dt',$horai,$horaf,'null')");
 		$i++;
 		$dia= date("w",strtotime($data."+$i days"));
 	}
@@ -54,7 +55,8 @@ if($repetir=="dia"){
 		$nsemana=4;
 	        $i=0;
         	while($i<$nsemana){
-                	echo date("Y-m-d",strtotime($data."+$i weeks"));
+                	$dt= date("Y-m-d",strtotime($data."+$i weeks"));
+			$res = mysql_query("INSERT INTO resera VALUES('$cpf,'$sala','$dt',$horai,$horaf,'null')");
                 	$i++;
                 	
         	}
