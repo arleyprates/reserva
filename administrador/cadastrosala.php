@@ -3,32 +3,9 @@ session_start();
 if (empty($_SESSION['user'])){
 header('location: ../index.html');
 }
+include("header.php");
 ?>
-<!DOCTYPE html>
-<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
-<link rel="icon" href="favicon.ico">
-<title>Cadastro de usuários</title>
-<!-- Bootstrap core CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet">
-<!-- Custom styles for this template -->
-<link href="../signin.css" rel="stylesheet">
-<script src="../js/ie-emulation-modes-warning.js"></script>
-<script src="../js/jquery-1.11.1.min.js" ></script>
-<!--
-<style type="text/css">
-.style1 {
-color: #FF0000;
-font-size: x-small;
-}
-.style3 {color: #0000FF; font-size: x-small; }
-</style>
--->
 <style rel="stylesheet" type="text/css">
 SELECT, INPUT[type="text"] {
 width: 160px;
@@ -104,47 +81,6 @@ text-align: center;
   }
 </script>
 </head>
-<body>
-<div class="navbar navbar-default" role="navigation">
-<div class="container">
-<div class="navbar-header">
-<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-<span class="sr-only">Toggle navigation</span>
-<span class="icon-bar"></span>
-<span class="icon-bar"></span>
-<span class="icon-bar"></span>
-</button>
-<a class="navbar-brand" href="#">Reserva de Sala</a>
-<div class="navbar-collapse collapse">
-<ul class="nav navbar-nav">
-<li class="active"><a href="index.php">Home</a></li>
-<li class="dropdown">
-<a href="#" class="dropdown-toggle" data-toggle="dropdown">Setor <span class="caret"></span></a>
-<ul class="dropdown-menu" role="menu">
-<li><a href="../setor-aula.html">Aula</a></li>
-<li><a href="../setor-aula.html">Laboratório</a></li>
-<li><a href="../setor-aula.html">Reunião</a></li>
-</ul>
-</li>
-<li class="dropdown">
-<a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastro <span class="caret"></span></a>
-<ul class="dropdown-menu" role="menu">
-<li><a href="cadastrousuarios.php">Usuário</a></li>
-<li><a href="cadastrorecurso.php">Recurso</a></li>
-<li><a href="cadastrosala.php">Sala</a></li>
-<li><a href="cadastrotiposala.php">Tipo de Sala</a></li>
-</ul>
-<li><a href="moderacao.php"><span class="badge pull-right">42</span>Notificações</a></li>
-</ul>
-</div><!--/.nav-collapse -->
-</div>
-<div class="navbar-collapse collapse">
-<div class="navbar-collapse collapse navbar-right">
-<button type="submit" class="btn btn-warning"><a href="../logout.php">Logout</a></button>
-</div><!--/.navbar-collapse -->
-</div><!--/.navbar-collapse -->
-</div>
-</div>
 <div class="container">
   <div class="jumbotron">
     <h1 style="color:#FFFFFF">Cadastro de Salas</h1>
@@ -176,6 +112,24 @@ text-align: center;
               <option value="1">Laboratório de Aulas</option>
               <option value="2">Sala de Aula</option>
               <option value="3">Auditório</option>
+            </select>
+            <span class="style1">* </span>
+          </td>
+        </tr>
+        <tr>
+          <td>Setor</td>
+          <td>
+            <select id="setor">
+              <option disabled>Escolha um setor</option>
+              <?php
+                include("../conexao.php");
+                include("../erro.php");
+                $sql = mysql_query("SELECT * FROM setor");
+                while ($result = mysql_fetch_array($sql)){
+                  printf ("<option value=\"$result[cod_setor]\">%s", $result['nome'], "</option>");
+                }
+                include("../close_conexao.php");
+              ?>
             </select>
             <span class="style1">* </span>
           </td>
@@ -230,11 +184,13 @@ text-align: center;
       var nsala = $("#nsala").val();
       var csala = $("#csala").val();
       var tiposala = $("#tiposala").val();
+      var setor = $("#setor").val();
+      alert(setor);
       jQuery.ajax({
         type: "POST",
         dataType: "json",
         url: "cadastrasala.php",
-        data: {recurso: item, nsala: nsala, csala: csala, tiposala: tiposala},
+        data: {recurso: item, nsala: nsala, csala: csala, tiposala: tiposala, setor: setor},
         success: function(item){
           alert("Success!");
         },
@@ -244,7 +200,7 @@ text-align: center;
         statusCode: {
           200: function(){
             alert("Sucesso ao Inserir!");
-            window.location.reload(true);
+            //window.location.reload(true);
           }
         }
       });
@@ -252,8 +208,7 @@ text-align: center;
     });
   });
 </script>
-<script src="../js/ie10-viewport-bug-workaround.js"></script>
+<script src="../js/jquery-1.11.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
-<script src="../js/docs.min.js"></script>
 </body>
 </html>
