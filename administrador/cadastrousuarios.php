@@ -123,52 +123,52 @@ function numeros(){
     </tr>
   -->
     <tr>
-      <td width="69">CPF:</td>
+      <td width="69" style="color:#000000">CPF:</td>
       <td width="546"><input name="cpf" type="text" id="cpf" size="20" maxlength="60" onkeypress="return numeros();" />
         <span class="style1">*</span></td>
     </tr>
     <tr>
-      <td width="69">Primeiro nome:</td>
+      <td width="69" style="color:#000000">Primeiro nome:</td>
       <td width="546"><input name="pnome" type="text" id="pnome" size="20" maxlength="60" onkeypress="return letras();" />
         <span class="style1">*</span></td>
     </tr>
     <tr>
-      <td>Ultimo nome:</td>
+      <td style="color:#000000">Ultimo nome:</td>
       <td><input name="unome" type="text" id="unome" size="40" maxlength="60" onkeypress="return letras();" />
       <span class="style1">*</span></td>
     </tr> 
     <tr>
-      <td>E-mail:</td>
+      <td style="color:#000000">E-mail:</td>
       <td><input name="email" type="text" id="email" maxlength="50" />
         <span class="style1">*</span></td>
     </tr>
 
     <tr>
-      <td>Senha:</td>
+      <td style="color:#000000">Senha:</td>
       <td><input name="senha" type="text" id="senha" maxlength="50" />
         <span class="style1">*</span></td>
     </tr>
 
     <tr>
-      <td>Tipo de usuário:</td>
+      <td style="color:#000000">Tipo de usuário:</td>
       <td><select name="tipousuario" id="tipousuario">
-        <option>Escolha uma tipo</option> 
-        <option value="Usuário comum">Usuário comum</option>
-        <option value="Moderador">Moderador</option>
-        <option value="Professor">Professor</option>
+        <option style="color:#000000">Escolha uma tipo</option> 
+        <option value="Usuário comum" style="color:#000000">Usuário comum</option>
+        <option value="Moderador" style="color:#000000">Moderador</option>
+        <option value="Professor" style="color:#000000">Professor</option>
 
          </select>
         <span class="style1">*      </span></td>
     </tr>
     
     <tr>
-      <td>SIAP:</td>
+      <td style="color:#000000">SIAP:</td>
       <td><input name="SIAP" type="text" id="SIAP" maxlength="50" />
         <span class="style1">*</span></td>
     </tr>
 
         <tr>
-      <td>Código de departamento:</td>
+      <td style="color:#000000">Código de departamento:</td>
       <td><input name="codepto" type="text" id="codepto" maxlength="50" />
         <span class="style1">*</span></td>
     </tr>

@@ -143,7 +143,6 @@ include("conexao.php");
     <div class="jumbotron">
       <div class="container">
         <h1>Hello!</h1>
-        <p><?php echo "Minha pica";?></p>
         <form action="javascript:void%200">
           <select name="setor" id="set" size="1">
             <?php

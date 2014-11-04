@@ -49,66 +49,49 @@ text-align: center;
 }
 </style>
 <script type="text/javascript">
-  function validaCampo()
-  {
-  if(document.cadastro.noraz.value=="")
-  {
-  alert("O Campo nome ou Razão Social é obrigatório!");
-  return false;
-  }
-  else
-  if(document.cadastro.email.value=="")
-  {
-  alert("O Campo email é obrigatório!");
-  return false;
-  }
-  else
-  if(document.cadastro.endereco.value=="")
-  {
-  alert("O Campo endereço é obrigatório!");
-  return false;
-  }
-  else
-  if(document.cadastro.cidade.value=="")
-  {
-  alert("O Campo Cidade é obrigatório!");
-  return false;
-  }
-  else
-  if(document.cadastro.estado.value=="")
-  {
-  alert("O Campo Estado é obrigatório!");
-  return false;
-  }
-  else
-  if(document.cadastro.cpfcnpj.value=="")
-  {
-  alert("O Campo Bairro é obrigatório!");
-  return false;
-  }
-  else
-  if(document.cadastro.ddd.value=="")
-  {
-  alert("O Campo DDD é obrigatório!");
-  return false;
-  }
-  else
-  if(document.cadastro.telefone.value=="")
-  {
-  alert("O Campo Telefone é obrigatório!");
-  return false;
-  }
-  else
-  return true;
+  function validaCampo(){
+    if(document.cadastro.noraz.value==""){
+      alert("O Campo nome ou Razão Social é obrigatório!");
+      return false;
+    }else
+      if(document.cadastro.email.value==""){
+        alert("O Campo email é obrigatório!");
+        return false;
+      }else
+        if(document.cadastro.endereco.value==""){
+          alert("O Campo endereço é obrigatório!");
+          return false;
+        }else
+          if(document.cadastro.cidade.value==""){
+          alert("O Campo Cidade é obrigatório!");
+          return false;
+          }else
+            if(document.cadastro.estado.value==""){
+              alert("O Campo Estado é obrigatório!");
+              return false;
+            }else
+              if(document.cadastro.cpfcnpj.value==""){
+                alert("O Campo Bairro é obrigatório!");
+                return false;
+              }else
+                if(document.cadastro.ddd.value==""){
+                  alert("O Campo DDD é obrigatório!");
+                  return false;
+                }else
+                  if(document.cadastro.telefone.value==""){
+                    alert("O Campo Telefone é obrigatório!");
+                    return false;
+                  }else
+                    return true;
   }
   function letras(){
-  tecla = event.keyCode;
-  if (tecla >= 48 && tecla <= 57){
-  alert("Digite apenas caracteres neste campo");
-  return false;
-  }else{
-  return true;
-  }
+    tecla = event.keyCode;
+    if (tecla >= 48 && tecla <= 57){
+      alert("Digite apenas caracteres neste campo");
+      return false;
+    }else{
+      return true;
+    }
   }
   function numeros(){
     tecla = event.keyCode;
@@ -119,7 +102,6 @@ text-align: center;
      return true;
     }
   }
-  
 </script>
 </head>
 <body>
@@ -169,33 +151,27 @@ text-align: center;
     <p style="color:#FFFFFF">Preencha as informações no formulário abaixo</p>
   </div>
   <div class="container">
-
-  <form action="cadastrasala.php">
-    Envia Qualquer coisa: <input type="text" name="nome">
-    <input type="submit" value="Envia">
-  </form>
-
-    <form method="post" action="cadastrasala.php">
+    <form method="post" action="" id="ajax_form">
       <table width="625">
         <tr>
           <td width="69">
             Número da sala:
           </td>
-          <td width="546"><input name="nsala" type="text" size="20" maxlength="60" onkeypress="return numeros();" />
+          <td width="546"><input id="nsala" type="text" size="20" maxlength="60" onkeypress="return numeros();" />
             <span class="style1">*</span>
           </td>
         </tr>
         <tr>
           <td width="69">Capacidade:</td>
           <td width="546">
-            <input name="csala" type="text" size="20" maxlength="60" />
+            <input id="csala" type="text" size="20" maxlength="60" />
             <span class="style1">*</span>
           </td>
         </tr>
         <tr>
           <td>Tipo de Sala:</td>
           <td>
-            <select name="tiposala">
+            <select id="tiposala">
               <option disabled>Escolha uma tipo</option>
               <option value="1">Laboratório de Aulas</option>
               <option value="2">Sala de Aula</option>
@@ -220,7 +196,7 @@ text-align: center;
               include("../erro.php");
               $sql = mysql_query("SELECT * FROM recurso");
               while ($result = mysql_fetch_array($sql)){
-                printf ("<option value=\"$result[nome]\">%s", $result['nome'], "</option>");
+                printf ("<option value=\"$result[codigo]\">%s", $result['nome'], "</option>");
               }
               include("../close_conexao.php");
             ?>
@@ -251,22 +227,24 @@ text-align: center;
   jQuery(document).ready(function() {
     jQuery("#baixarlicitacao").click(function(e) {
       var item = $("#leftValues").val();
-      alert(item);
+      var nsala = $("#nsala").val();
+      var csala = $("#csala").val();
+      var tiposala = $("#tiposala").val();
       jQuery.ajax({
         type: "POST",
         dataType: "json",
         url: "cadastrasala.php",
-        data: {recurso: item},
-        //data: "name=\"item\"" + item,
+        data: {recurso: item, nsala: nsala, csala: csala, tiposala: tiposala},
         success: function(item){
-          alert("success");
+          alert("Success!");
         },
         erro: function(item) {
-          alert("erro");
+          alert("Erro n foi possivel Inserir");
         },
         statusCode: {
           200: function(){
-            alert("sucesso!! " + item);
+            alert("Sucesso ao Inserir!");
+            window.location.reload(true);
           }
         }
       });
