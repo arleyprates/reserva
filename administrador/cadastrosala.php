@@ -151,7 +151,7 @@ text-align: center;
     <p style="color:#FFFFFF">Preencha as informações no formulário abaixo</p>
   </div>
   <div class="container">
-    <form method="post" action="">
+    <form method="post" action="" id="ajax_form">
       <table width="625">
         <tr>
           <td width="69">
@@ -230,44 +230,24 @@ text-align: center;
       var nsala = $("#nsala").val();
       var csala = $("#csala").val();
       var tiposala = $("#tiposala").val();
-      alert(item);
       jQuery.ajax({
         type: "POST",
         dataType: "json",
         url: "cadastrasala.php",
         data: {recurso: item, nsala: nsala, csala: csala, tiposala: tiposala},
         success: function(item){
-          alert("success");
+          alert("Success!");
         },
         erro: function(item) {
-          alert("erro");
+          alert("Erro n foi possivel Inserir");
         },
         statusCode: {
           200: function(){
-            alert("sucesso!! " + item);
+            alert("Sucesso ao Inserir!");
+            window.location.reload(true);
           }
         }
-      });/*
-      var nsala = $("#nsala").val();
-      var csala = $("#csala").val();
-      var tiposala = $("#tiposala").val();
-      jQuery.ajax({
-        type: "POST",
-        dataType: "json",
-        url: "cadastrasala.php",
-        data: {nsala: nsala, csala: csala, tiposala: tiposala},
-        success: function(item){
-          alert("success");
-        },
-        erro: function(item) {
-          alert("erro");
-        },
-        statusCode: {
-          200: function(){
-            alert("sucesso!! dados!");
-          }
-        }
-      });*/
+      });
       return false;
     });
   });
