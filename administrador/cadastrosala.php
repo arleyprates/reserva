@@ -19,7 +19,7 @@ header('location: ../index.html');
 <!-- Custom styles for this template -->
 <link href="../signin.css" rel="stylesheet">
 <script src="../js/ie-emulation-modes-warning.js"></script>
-<script src="../js/jquery-1.11.1.min.js"></script>
+<script src="../js/jquery-1.11.1.min.js" ></script>
 <!--
 <style type="text/css">
 .style1 {
@@ -119,13 +119,7 @@ text-align: center;
      return true;
     }
   }
-    jQuery(document).ready(function() {
-      jQuery("#baixarlicitacao").click(function(e) {
-      var item = $("#leftValues").val();
-      alert(item);
-      return false;
-      });
-    });
+  
 </script>
 </head>
 <body>
@@ -159,13 +153,12 @@ text-align: center;
 <li><a href="cadastrotiposala.php">Tipo de Sala</a></li>
 </ul>
 <li><a href="moderacao.php"><span class="badge pull-right">42</span>Notificações</a></li>
-</li>
 </ul>
 </div><!--/.nav-collapse -->
 </div>
 <div class="navbar-collapse collapse">
 <div class="navbar-collapse collapse navbar-right">
-<a href="../logout.php"><button type="submit" class="btn btn-warning">Logout</button></a>
+<button type="submit" class="btn btn-warning"><a href="../logout.php">Logout</a></button>
 </div><!--/.navbar-collapse -->
 </div><!--/.navbar-collapse -->
 </div>
@@ -176,24 +169,34 @@ text-align: center;
     <p style="color:#FFFFFF">Preencha as informações no formulário abaixo</p>
   </div>
   <div class="container">
-    <form id="cadastro" name="cadastro" method="post" action="cadastrasala.php"> <!-- onsubmit="baixarLicitacao(); " -->
-      <table width="625" border="0">
+
+  <form action="cadastrasala.php">
+    Envia Qualquer coisa: <input type="text" name="nome">
+    <input type="submit" value="Envia">
+  </form>
+
+    <form method="post" action="cadastrasala.php">
+      <table width="625">
         <tr>
-          <td width="69">Número da sala:</td>
-          <td width="546"><input name="nr_sala" type="text" id="nr_sala" size="20" maxlength="60" onkeypress="return numeros();" />
+          <td width="69">
+            Número da sala:
+          </td>
+          <td width="546"><input name="nsala" type="text" size="20" maxlength="60" onkeypress="return numeros();" />
             <span class="style1">*</span>
           </td>
         </tr>
         <tr>
           <td width="69">Capacidade:</td>
-          <td width="546"><input name="capacidade" type="text" id="capacidade" size="20" maxlength="60" />
-          <span class="style1">*</span></td>
+          <td width="546">
+            <input name="csala" type="text" size="20" maxlength="60" />
+            <span class="style1">*</span>
+          </td>
         </tr>
         <tr>
           <td>Tipo de Sala:</td>
           <td>
-            <select name="tipodesala" id="tipodesala">
-              <option>Escolha uma tipo</option>
+            <select name="tiposala">
+              <option disabled>Escolha uma tipo</option>
               <option value="1">Laboratório de Aulas</option>
               <option value="2">Sala de Aula</option>
               <option value="3">Auditório</option>
@@ -213,25 +216,22 @@ text-align: center;
         <div>
           <select id="rightValues" size="5" multiple>
             <?php
-            include("../conexao.php");
-            include("../erro.php");
-            $sql = mysql_query("SELECT * FROM recurso");
-            $i = 0;
-            while ($result = mysql_fetch_array($sql)){
-            printf ("<option value=\"$result[nome]\">%s", $result['nome'], "</option>");
-            $i++;
-            }
-            include("../close_conexao.php");
+              include("../conexao.php");
+              include("../erro.php");
+              $sql = mysql_query("SELECT * FROM recurso");
+              while ($result = mysql_fetch_array($sql)){
+                printf ("<option value=\"$result[nome]\">%s", $result['nome'], "</option>");
+              }
+              include("../close_conexao.php");
             ?>
           </select>
         </div>
       </section>
-      <td colspan="2"><p>
-        <input name="baixar" type="submit" id="baixarlicitacao" value="Confirmar" /> <!-- type="submit" -->
-        <input name="limpar" type="reset" id="limpar" value="Cancelar" />
-        <br/>
-        <span class="style1">* Campos com * s&atilde;o obrigat&oacute;rios! </span></p>
-      </td>
+      <p>
+        <input name="baixar" type="submit" id="baixarlicitacao" value="Confirmar">
+        <input name="limpar" type="reset" id="limpar" value="Cancelar">
+        <span class="style1">* Campos com * s&atilde;o obrigat&oacute;rios! </span>
+      </p>
     </form>
   </div>
 </div>
@@ -247,6 +247,31 @@ text-align: center;
   $( "#rightValues" ).change(function () {
   var selectedItem = $("#rightValues option:selected");
   $("#txtRight").val(selectedItem.text());
+  });
+  jQuery(document).ready(function() {
+    jQuery("#baixarlicitacao").click(function(e) {
+      var item = $("#leftValues").val();
+      alert(item);
+      jQuery.ajax({
+        type: "POST",
+        dataType: "json",
+        url: "cadastrasala.php",
+        data: {recurso: item},
+        //data: "name=\"item\"" + item,
+        success: function(item){
+          alert("success");
+        },
+        erro: function(item) {
+          alert("erro");
+        },
+        statusCode: {
+          200: function(){
+            alert("sucesso!! " + item);
+          }
+        }
+      });
+      return false;
+    });
   });
 </script>
 <script src="../js/ie10-viewport-bug-workaround.js"></script>
