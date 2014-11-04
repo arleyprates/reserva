@@ -9,8 +9,25 @@
  if($_SESSION['tipousuario'] != 1){
 
  }*/
+$cpf="1";
+$email="teste@teste";
+$horai='09:00:00';
 $repetir="semana";
 $data= '2014-11-03';
+$codsetor="1";
+//obter horario de encerramento do setor
+//$res= mysql_query("SELECT horario_encerramento FROM setor WHERE cod_setor='$codsetor'");
+//$horae = mysql_fetch_array($res);
+$horae='20:00:00';
+//selection da hora final
+$hi=explode(":",$horai);
+$hf=explode(":",$horae);
+echo "Hora Final: ";
+echo "<selection id=\"horafinal\" name=\"horaf\">";
+for($i=$hi[0];$i<$hf;$i++){
+	echo " <option value=\"$i\">$i</option>";
+}
+echo "</selection>";
 //$timestamp= strtotime($data);
 if($repetir=="dia"){
 	$i=0;
