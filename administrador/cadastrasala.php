@@ -3,38 +3,41 @@ session_start();
 if (empty($_SESSION['user'])){
   header('location: ../index.html');
 }
-?>
-//<!-- Fim do JavaScript que validará os campos obrigatórios! -->
-<?php 
+
 include('../conexao.php');
 header('Content-type: text/html; charset=UTF-8'); 
-?>
+header('Content-type:application/json'); 
 
+$nsala = $_POST ['nsala'];
+$csala = $_POST ['csala'];
+$tsala = $_POST['tiposala'];
+$srecurso = $_POST['recurso'];
+//$srecurso = json_decode($array);
+echo "aha!";
+header('location: ../index.html');
+//$srecurso = json_decode('success'=>true);
+//$array = array_values($srecurso);
+//echo 
+//echo "<script>alert('aaa')</script>";
+die;
 
-<?php 
-// RECEBENDO OS DADOS PREENCHIDOS DO FORMULÁRIO !
-
-$id  = $_POST ['nr_sala']; //atribuição do campo "nome" vindo do formulário para variavel  
-$desc  = $_POST ['descricao']; //atribuição do campo "email" vindo do formulário para variavel
-
-if((strcmp ($id, "") != 0) && (strcmp ($desc, "") != 0))
-{
-
-  $query = "INSERT INTO `tipos_de_sala` ( `id` , `desc`) 
-  VALUES ('$id', '$desc')";
-  
-    $result = mysql_query($query, $conexao);
-
-  if($result)
-  {
+if((strcmp ($nsala, "") != 0) && (strcmp ($csala, "") != 0) && (strcmp ($tsala, "") != 0)){
+  $query = "INSERT INTO `sala` ( `nr_sala` , `capacidade`, `id_tipo_sala`) 
+  VALUES ('$nsala', '$csala', '$tsala')";
+  $result = mysql_query($query, $conexao);
+  if($result){
     echo "Tipo de Sala cadastrada com sucesso!";
-  }
-
-  else 
-  {
+  }else{
     echo mysql_error();
-  }
+  }/*
+  while (FALTA UMA CONDICAO!){
+    $sql = "INSERT INTO `utiliza` (`codigo_recurso`, `nr_sala`) VALUES ('$srecurso','$nsala')";
+    if($sql){
+      echo "Recurso Associado a sala";
+    }else{
+      echo mysql_error();
+    }   
+  }*/
 }
 
 ?>
-
