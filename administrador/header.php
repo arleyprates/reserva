@@ -81,19 +81,19 @@ text-align: center;
   </li>
   <li role="presentation" class="dropdown-header">Sala
     <li><a href="cadastrosala.php">Cadastro</a></li>
-    <li><a href="listarsalas.php">Listar</a></li>
+    <li><a href="listasalas.php">Listar</a></li>
     <li><a href="#">Alterar</a></li>
-    <li><a href="removesala.php">Apagar</a></li>
+    <li><a href="#">Apagar</a></li>
   </li>
   <li role="presentation" class="dropdown-header">Tipo de Sala
     <li><a href="cadastrotiposala.php">Cadastro</a></li>
-    <li><a href="#">Listar</a></li>
+    <li><a href="listasalas.php">Listar</a></li>
     <li><a href="#">Alterar</a></li>
     <li><a href="#">Apagar</a></li>
   </li>
   <li role="presentation" class="dropdown-header">Setor
     <li><a href="cadastrosetor.php">Cadastro</a></li>
-    <li><a href="#">Listar</a></li>
+    <li><a href="listasalas.php">Listar</a></li>
     <li><a href="#">Alterar</a></li>
     <li><a href="#">Apagar</a></li>
   </li>

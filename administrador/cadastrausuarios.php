@@ -35,9 +35,10 @@ if((strcmp ($pnome, "") != 0) && (strcmp ($unome, "") != 0) && (strcmp ($email, 
   if(strcmp($tipo_usr, "Professor") == 0 )
   {
       $query = "INSERT INTO `professor` ( `cod_depto` , `siap` , `cpf_prof`) 
-    VALUES ('$cpf', '$SIAP', '$codepto')";
+    VALUES ('$codepto', '$SIAP', '$cpf')";
   
   }
+
   else if(strcmp($tipo_usr, "Moderador") == 0 )
   {
     $query = "INSERT INTO `moderador` ( `cpf_mod` , `cpf_adm`) 
