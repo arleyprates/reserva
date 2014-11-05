@@ -64,7 +64,7 @@ text-align: center;
 </ul>
 </li>
 <li class="dropdown">
-<a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastro <span class="caret"></span></a>
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">Gerência <span class="caret"></span></a>
 <ul class="dropdown-menu" role="menu">
 <li><a href="cadastrousuarios.php">Usuário</a></li>
 <li><a href="cadastrorecurso.php">Recurso</a></li>
@@ -72,7 +72,7 @@ text-align: center;
 <li><a href="cadastrotiposala.php">Tipo de Sala</a></li>
 <li><a href="cadastrosetor.php">Setor</a></li>
 </ul>
-<li><a href="listareservas.php"><span class="badge pull-right">42</span>Notificações</a></li>
+<li><a href="reservaspendentes.php"><span class="badge pull-right">42</span>Notificações</a></li>
 </ul>
 </div><!--/.nav-collapse -->
 </div>
