@@ -57,7 +57,17 @@ foreach ($sala as $s) {
 		}
 	}
 }
-
+echo "<div class=\"panel panel-default\">";
+echo "<div class=\"panel-heading\">
+      <p class=\"text-center\">$data</p>
+    </div>";
+echo "<div class=\"panel-body\">
+      <ul class=\"pager\">
+        <li class=\"previous\"><a href=\"#\">&larr; Ir para o dia anterior</a></li>
+        <li><a href=\"#\">Ir para o dia de hoje</a></li>
+        <li class=\"next\"><a href=\"#\">Ir para o próximo dia &rarr;</a></li>
+      </ul>
+    </div>";
 echo "<table class=\"table\">";
 echo " <thead>";
 echo "  <tr>";
@@ -86,5 +96,6 @@ for($i=$a[0];$i<$e[0];$i++){
 }
 echo " </tbody>";
 echo "</table>";
+echo "</div>"
 ?>
 

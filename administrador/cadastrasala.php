@@ -12,6 +12,8 @@ $nsala = $_POST ['nsala'];
 $csala = $_POST ['csala'];
 $tsala = $_POST['tiposala'];
 $recurso = $_POST['recurso'];
+$csetor = $_POST['setor'];
+echo $csetor;
 
 
 if((strcmp ($nsala, "") != 0) && (strcmp ($csala, "") != 0) && (strcmp ($tsala, "") != 0)){
@@ -25,10 +27,6 @@ if((strcmp ($nsala, "") != 0) && (strcmp ($csala, "") != 0) && (strcmp ($tsala, 
   }
   foreach ($recurso as $key => $valor){
     $sql = "INSERT INTO utiliza (codigo_recurso, nr_sala) VALUES ($valor, $nsala);";
-    echo " ";
-    echo $valor;
-    echo " ";
-    echo $nsala;
     $result = mysql_query($sql, $conexao);
     if($sql){
       echo "Recurso Associado a sala\n";
@@ -36,6 +34,14 @@ if((strcmp ($nsala, "") != 0) && (strcmp ($csala, "") != 0) && (strcmp ($tsala, 
       echo "Recursso NAO associado a sala\n";
       echo mysql_error();
     }   
+  }
+  $sql = "INSERT INTO gerencia (cod_setorg, id_sala) VALUES ($csetor, $nsala)";
+  $result = mysql_query($sql, $conexao);
+  if($sql){
+    echo "Sala Associado a setor";
+  }else {
+    echo "Sala NAO associado a setor";
+    echo mysql_error();
   }
 }
 
