@@ -7,7 +7,7 @@ include('header.php');
 ?>
 <div class="container">
   <div class="jumbotron">
-    <h1 style="color:#FFFFFF">Cadastro de Salas</h1>
+    <h1 style="color:#FFFFFF">Cadastro de Usuarios</h1>
     <p style="color:#FFFFFF">Preencha as informações no formulário abaixo</p>
   </div>
   <div class="container">

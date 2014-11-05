@@ -18,7 +18,7 @@ include("header.php");
   <p style="color:#FFFFFF">Preencha as informações no formulário abaixo</p>
   <!--<p style="color:#FFFFFF"></p> -->
 </div>
-<form action="listarsalas.php" method="post">
+<form action="listarsalas.php" method="get">
 <tr>
       <td width="69">Dado da sala:</td>
       <td width="546"><input name="buscarsala" type="text" id="buscarsala" size="20" maxlength="60" onclick="" />
