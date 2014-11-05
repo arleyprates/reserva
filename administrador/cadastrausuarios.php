@@ -42,7 +42,7 @@ if((strcmp ($pnome, "") != 0) && (strcmp ($unome, "") != 0) && (strcmp ($email, 
   else if(strcmp($tipo_usr, "Moderador") == 0 )
   {
     $query = "INSERT INTO `moderador` ( `cpf_mod` , `cpf_adm`) 
-    VALUES ('$cpf', '14819015591')";
+    VALUES ('$cpf', '10')";
    
   }
 

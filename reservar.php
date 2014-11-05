@@ -68,7 +68,5 @@ if($tipousuario!= "1"){
                 	}
 		}
 	}
-}else{
 
-}
 ?>

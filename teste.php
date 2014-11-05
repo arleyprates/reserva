@@ -117,9 +117,23 @@ include("conexao.php");
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Setor <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="setor-aula.html">Aula</a></li>
+              <?php  $res = mysql_query("SELECT cod_setor, nome FROM setor WHERE 1");
+              //$total = mysqli_num_rows($res);
+
+              //for($i=0;$i<$total;$i++){
+                
+                while($dados = mysql_fetch_array($res))
+                {
+                  $cod = $dados[0];
+                  $nome = $dados[1];
+                  $nomecorreto = utf8_encode($nome);
+                  echo "<li><a href='setor-aula.html'>$nomecorreto</a></li>";
+                }
+                ?>   
+               <!-- <li><a href="setor-aula.html">Aula</a></li>
                 <li><a href="setor-aula.html">Laboratório</a></li>
                 <li><a href="setor-aula.html">Reunião</a></li>
+             -->
               </ul>
             </li>
             <li><a href="moderacao.html"><span class="badge pull-right">42</span>Notificações</a></li>

@@ -86,7 +86,7 @@ for($i=$a[0];$i<$e[0];$i++){
 	echo "   <td>$i</td>";
 	foreach ($sala as $s) {
 		if($tabela[$i][$s] == "livre"){
-			echo "   <td><a href=\"solicita-reserva.html\">reserve</a></td>";
+			echo "   <td><a href=\"solicita-reserva.php?sala=$s\">reserve</a></td>";
 		}else{
 			$saida = $tabela[$i][$s];
 			echo "   <td>$saida</td>";
