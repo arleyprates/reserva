@@ -166,22 +166,17 @@ include("conexao.php");
       </div>
     </div>
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-    <center><div id="div3_example" style="margin:10px 0 30px 0; border:dashed 1px red; width:205px; height:230px;">
-    	
-    </div>
-
-     </center>
+    <center>
+      <div id="div3_example" style="margin:10px 0 30px 0; width:205px; height:230px;"></div>     
+    </center>
 
     <!-- Table -->
-    <div id="date" style="height:20px; line-height:20px; margin:10px 0 0 0; border:dashed 1px #666;"></div>
+    <div id="date" style="height:20px; line-height:20px; margin:10px 0 0 0;"></div>
    
   </div>
 </div>
  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/jquery-1.11.1.min.js"></script>
-    <script src="js/ie10-viewport-bug-workaround.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/docs.min.js"></script>
-        
+    <script src="js/bootstrap.min.js"></script>        
 </body>
 </html>
