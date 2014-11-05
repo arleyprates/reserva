@@ -11,7 +11,6 @@ if (empty($_SESSION['user'])){
 }
 include('header.php');
 ?>
-
 <!-- BEGIN CONTEUDOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO        -->
 <div class="container">
   <div class="jumbotron">
@@ -52,8 +51,6 @@ include('header.php');
   </div>
 </div>
 <!-- END   CONTEUDOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO        -->
-
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../js/jquery-1.11.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
   </body>

@@ -3,84 +3,8 @@ session_start();
 if (empty($_SESSION['user'])){
 header('location: ../index.html');
 }
-include("header.php");
+include('header.php');
 ?>
-<head>
-<style rel="stylesheet" type="text/css">
-SELECT, INPUT[type="text"] {
-width: 160px;
-box-sizing: border-box;
-}
-SECTION {
-padding: 8px;
-background-color: #f0f0f0;
-overflow: auto;
-}
-SECTION > DIV {
-float: left;
-padding: 4px;
-}
-SECTION > DIV + DIV {
-width: 40px;
-text-align: center;
-}
-</style>
-<script type="text/javascript">
-  function validaCampo(){
-    if(document.cadastro.noraz.value==""){
-      alert("O Campo nome ou Razão Social é obrigatório!");
-      return false;
-    }else
-      if(document.cadastro.email.value==""){
-        alert("O Campo email é obrigatório!");
-        return false;
-      }else
-        if(document.cadastro.endereco.value==""){
-          alert("O Campo endereço é obrigatório!");
-          return false;
-        }else
-          if(document.cadastro.cidade.value==""){
-          alert("O Campo Cidade é obrigatório!");
-          return false;
-          }else
-            if(document.cadastro.estado.value==""){
-              alert("O Campo Estado é obrigatório!");
-              return false;
-            }else
-              if(document.cadastro.cpfcnpj.value==""){
-                alert("O Campo Bairro é obrigatório!");
-                return false;
-              }else
-                if(document.cadastro.ddd.value==""){
-                  alert("O Campo DDD é obrigatório!");
-                  return false;
-                }else
-                  if(document.cadastro.telefone.value==""){
-                    alert("O Campo Telefone é obrigatório!");
-                    return false;
-                  }else
-                    return true;
-  }
-  function letras(){
-    tecla = event.keyCode;
-    if (tecla >= 48 && tecla <= 57){
-      alert("Digite apenas caracteres neste campo");
-      return false;
-    }else{
-      return true;
-    }
-  }
-  function numeros(){
-    tecla = event.keyCode;
-    if ((tecla >= 65 && tecla <= 90) || (tecla >= 97 && tecla <=122)) {
-      alert("Digite apenas números neste campo");
-      return false;
-    }else{
-     return true;
-    }
-  }
-</script>
-</head>
 <div class="container">
   <div class="jumbotron">
     <h1 style="color:#FFFFFF">Cadastro de Salas</h1>
@@ -185,7 +109,6 @@ text-align: center;
       var csala = $("#csala").val();
       var tiposala = $("#tiposala").val();
       var setor = $("#setor").val();
-      alert(setor);
       jQuery.ajax({
         type: "POST",
         dataType: "json",
@@ -200,7 +123,7 @@ text-align: center;
         statusCode: {
           200: function(){
             alert("Sucesso ao Inserir!");
-            //window.location.reload(true);
+            window.location.reload(true);
           }
         }
       });
@@ -208,7 +131,7 @@ text-align: center;
     });
   });
 </script>
-<script src="../js/jquery-1.11.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
+<script src="../js/docs.min.js"></script>
 </body>
 </html>

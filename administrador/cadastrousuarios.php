@@ -3,7 +3,6 @@ session_start();
 if (empty($_SESSION['user'])){
   header('location: ../index.html');
 }
-
 include("header.php");
 ?>
 <div class="container">
@@ -51,7 +50,7 @@ include("header.php");
     <tr>
       <td style="color:#000000">Tipo de usuário:</td>
       <td><select name="tipousuario" id="tipousuario">
-        <option style="color:#000000">Escolha uma tipo</option> 
+        <option style="color:#000000" disabled>Escolha uma tipo</option> 
         <option value="Usuário comum" style="color:#000000">Usuário comum</option>
         <option value="Moderador" style="color:#000000">Moderador</option>
         <option value="Professor" style="color:#000000">Professor</option>
@@ -83,86 +82,6 @@ include("header.php");
   </table>
 </form>
 </div>
-<script type="text/javascript">
-  
-function validaCampo()
-{
-if(document.cadastro.noraz.value=="")
-  {
-  alert("O Campo nome ou Razão Social é obrigatório!");
-  return false;
-  }
-  
-else
-  if(document.cadastro.email.value=="")
-  {
-  alert("O Campo email é obrigatório!");
-  return false;
-  }
-else
-  if(document.cadastro.endereco.value=="")
-  {
-  alert("O Campo endereço é obrigatório!");
-  return false;
-  }
-else
-  if(document.cadastro.cidade.value=="")
-  {
-  alert("O Campo Cidade é obrigatório!");
-  return false;
-  }
-else
-  if(document.cadastro.estado.value=="")
-  {
-  alert("O Campo Estado é obrigatório!");
-  return false;
-  }
-else
-  if(document.cadastro.cpfcnpj.value=="")
-  {
-  alert("O Campo Bairro é obrigatório!");
-  return false;
-  }
-else
-  if(document.cadastro.ddd.value=="")
-  {
-  alert("O Campo DDD é obrigatório!");
-  return false;
-  }
-else
-  if(document.cadastro.telefone.value=="")
-  {
-  alert("O Campo Telefone é obrigatório!");
-  return false;
-  }
-
-else
-
-return true;
-
-}
-
-function letras(){  
-    tecla = event.keyCode;  
-    if (tecla >= 48 && tecla <= 57){  
-        alert("Digite apenas caracteres neste campo");
-        return false;  
-    }else{  
-       return true;  
-    }  
-}
-
-function numeros(){  
-    tecla = event.keyCode;  
-    if ((tecla >= 65 && tecla <= 90) || (tecla >= 97 && tecla <=122)) {  
-        alert("Digite apenas números neste campo");
-        return false;  
-    }
-    else{  
-       return true;  
-    }  
-}  
-</script>
 <script src="../js/jquery-1.11.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
 </body>
