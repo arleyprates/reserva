@@ -1,19 +1,24 @@
-<?php header('Content-type: text/html; charset=UTF-8'); ?>
- 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<!-- <meta http-equiv="Content-Type: content=text/html; charset=UTF-8" /> -->
-<title>Cadastro de usuários</title>
+<?php
+session_start();
+if ($_SESSION['tipousuario'] != 0)
+  echo "<script>alert('Usario sem permissao de ADM'); 
+    window.location.replace('../logout.php');
+    </script>";
+if (empty($_SESSION['user'])){
+  echo "<script>alert('Sessao encerrada usario incorreto'); 
+    window.location.replace('../logout.php');
+    </script>";
+}
+include("header.php");
+?>
 
-<link href="../css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+<div class="container">
 <div class="jumbotron">
   <h1 style="color:#FFFFFF">Remoção de Sala</h1>
+  <p style="color:#FFFFFF">Preencha as informações no formulário abaixo</p>
   <!--<p style="color:#FFFFFF"></p> -->
 </div>
-<form action="listarsalas.php" method="get">
+<form action="listarsalas.php" method="post">
 <tr>
       <td width="69">Dado da sala:</td>
       <td width="546"><input name="buscarsala" type="text" id="buscarsala" size="20" maxlength="60" onclick="" />
@@ -29,6 +34,8 @@
 
 </tr>
 </form>
-
+</div>
+<script src="../js/jquery-1.11.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 </body>
 </html>

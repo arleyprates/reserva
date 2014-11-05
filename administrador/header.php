@@ -66,12 +66,38 @@ text-align: center;
 <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gerência <span class="caret"></span></a>
 <ul class="dropdown-menu" role="menu">
-<li><a href="cadastrousuarios.php">Usuário</a></li>
-<li><a href="cadastrorecurso.php">Recurso</a></li>
-<li><a href="cadastrosala.php">Sala</a></li>
-<li><a href="cadastrotiposala.php">Tipo de Sala</a></li>
-<li><a href="cadastrosetor.php">Setor</a></li>
-</ul>
+
+  <li role="presentation" class="dropdown-header">Usuário
+    <li><a href="cadastrousuarios.php">Cadastrar</a></li>
+    <li><a href="#">Listar</a></li>
+    <li><a href="#">Alterar</a></li>
+    <li><a href="#">Apagar</a></li>
+  </li>
+  <li role="presentation" class="dropdown-header">Recurso
+    <li><a href="cadastrorecurso.php">Cadastro</a></li>
+    <li><a href="#">Listar</a></li>
+    <li><a href="#">Alterar</a></li>
+    <li><a href="#">Apagar</a></li>
+  </li>
+  <li role="presentation" class="dropdown-header">Sala
+    <li><a href="cadastrosala.php">Cadastro</a></li>
+    <li><a href="listarsalas.php">Listar</a></li>
+    <li><a href="#">Alterar</a></li>
+    <li><a href="removesala.php">Apagar</a></li>
+  </li>
+  <li role="presentation" class="dropdown-header">Tipo de Sala
+    <li><a href="cadastrotiposala.php">Cadastro</a></li>
+    <li><a href="#">Listar</a></li>
+    <li><a href="#">Alterar</a></li>
+    <li><a href="#">Apagar</a></li>
+  </li>
+  <li role="presentation" class="dropdown-header">Setor
+    <li><a href="cadastrosetor.php">Cadastro</a></li>
+    <li><a href="#">Listar</a></li>
+    <li><a href="#">Alterar</a></li>
+    <li><a href="#">Apagar</a></li>
+  </li>
+  </ul>
 <li><a href="reservaspendentes.php"><span class="badge pull-right">42</span>Notificações</a></li>
 </ul>
 </div><!--/.nav-collapse -->
