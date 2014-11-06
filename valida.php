@@ -25,7 +25,7 @@ $nome = $result[0];
 		if ($cpf == $result[0]){
 			session_start();
 			$_SESSION['user'] = $nome;
-			$_SESSION['tipousuario'] = 1;
+			$_SESSION['tipousuario'] = 0;
 			header("location: administrador/index.php");
 			include("close_conexao.php");
 			exit;
