@@ -37,6 +37,68 @@ if (empty($_SESSION['user'])){
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <link rel="stylesheet" type="text/css" media="all" href="../jsDatePick_ltr.min.css" />
+    <script type="text/javascript" src="../bibliotecaAjax.js"></script>
+<script type="text/javascript" src="../funcao.js"></script>
+<script type="text/javascript" src="../jquery.1.4.2.js"></script>
+<script type="text/javascript" src="../jsDatePick.jquery.min.1.3.js"></script>
+
+<script type="text/javascript">
+  window.onload = function(){   
+    
+    g_globalObject = new JsDatePick({
+      useMode:1,
+      isStripped:true,
+      target:"div3_example"
+      /*selectedDate:{        This is an example of what the full configuration offers.
+        day:5,            For full documentation about these settings please see the full version of the code.
+        month:9,
+        year:2006
+      },
+      yearsRange:[1978,2020],
+      limitToToday:false,
+      cellColorScheme:"beige",
+      dateFormat:"%m-%d-%Y",
+      imgPath:"img/",
+      weekStartDay:1*/
+    });
+    
+    g_globalObject.setOnSelectedDelegate(function(){
+      var obj = g_globalObject.getSelectedDay();
+      var data =obj.day + "/" + obj.month + "/" + obj.year;
+      
+      obtemData(data);
+      
+      
+    });
+    
+    
+    
+    g_globalObject2 = new JsDatePick({
+      useMode:1,
+      isStripped:false,
+      target:"div4_example",
+      cellColorScheme:"beige"
+      /*selectedDate:{        This is an example of what the full configuration offers.
+        day:5,            For full documentation about these settings please see the full version of the code.
+        month:9,
+        year:2006
+      },
+      yearsRange:[1978,2020],
+      limitToToday:false,
+      dateFormat:"%m-%d-%Y",
+      imgPath:"img/",
+      weekStartDay:1*/
+    });
+    
+    g_globalObject2.setOnSelectedDelegate(function(){
+      var obj = g_globalObject2.getSelectedDay();
+      alert("a date was just selected and the date is : " + obj.day + "/" + obj.month + "/" + obj.year);
+      document.getElementById("div3_example_result").innerHTML = obj.day + "/" + obj.month + "/" + obj.year;
+    });   
+    
+  };
+</script>
   </head>
 
   <body>
@@ -56,9 +118,20 @@ if (empty($_SESSION['user'])){
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Setor <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="../setor-aula.html">Aula</a></li>
-                <li><a href="../setor-aula.html">Laboratório</a></li>
-                <li><a href="../setor-aula.html">Reunião</a></li>
+                <?php
+                include("../conexao.php");
+                include("../erro.php");
+                $sql = mysql_query("SELECT * FROM setor");
+                while ($result = mysql_fetch_array($sql)){
+                  printf("<li><a href='%s.php'>", $result['cod_setor']);
+                  $nome = $result['nome'];
+                  $nomeok = utf8_encode($nome);
+                  printf("%s", $nomeok);
+                  printf("</a></li>");
+                  //printf ("<li><a href=\"%s.php\">%s</a></li>", $result['nome']);
+                }
+              ?>
+              <li><a href="#">Reserva</a>
               </ul>
             </li>
           </ul>
@@ -77,62 +150,41 @@ if (empty($_SESSION['user'])){
       	<h2>Sr.(a) <?php echo $_SESSION['user'];?><h2>
         <h3>Bem-vindo</h3>
         <p>This is a web application for booking  meeting rooms.</p>
+        <p>
+        <form action="javascript:void%200">
+          <select name="setor" id="set" size="1">
+            <?php
+              $res = mysql_query("SELECT cod_setor, nome FROM setor WHERE 1");
+              //$total = mysqli_num_rows($res);
+
+              //for($i=0;$i<$total;$i++){
+                
+                while($dados = mysql_fetch_array($res))
+                {
+                  $cod = $dados[0];
+                  $nome = $dados[1];
+                  $nomecorreto = utf8_encode($nome);
+                  echo "  <option  value=\"$cod\">$nomecorreto</option>";
+                }
+              //}
+            ?>
+          </select>
+        </form></p>
+        <p>
       </div>
     </div>
     
-    
-   <div class="panel panel-default">
-    <!-- Default panel contents -->
-    <div class="panel-heading">
-      <p class="text-center">Segunda-feira 27 de Outubro</p></div>
-    <div class="panel-body">
-      <ul class="pager">
-        <li class="previous"><a href="#">&larr; Ir para o dia anterior</a></li>
-        <li><a href="#">Ir para o dia de hoje</a></li>
-        <li class="next"><a href="#">Ir para o próximo dia &rarr;</a></li>
-      </ul>
-    </div>
-
-
+    <center>
+      <div id="div3_example" style="margin:10px 0 30px 0; width:205px; height:230px;"></div>     
+    </center>
 
     <!-- Table -->
-    <table class="table">
-      <thead>
-          <tr>
-            <th>Hora</th>
-            <th><a href="info-sala.html">Sala 101</a></th>
-            <th><a href="info-sala.html">Sala 201</a></th>
-            <th><a href="info-sala.html">Sala 301</a></th>
-          </tr>
-        </thead>
-      <tbody>
-          <tr>
-            <td>7:00</td>
-            <td><a href="solicita-reserva.html">reserve</td></a>
-            <td><a href="solicita-reserva.html">reserve</td></a>
-            <td><a href="solicita-reserva.html">reserve</td></a>
-          </tr>
-          <tr>
-            <td>8:00</td>
-            <td><a href="reserva.html">Jacob</a></td>
-            <td><a href="reserva.html">Thornton</a></td>
-            <td><a href="reserva.html">@fat</a></td>
-          </tr>
-          <tr>
-            <td>9:00</td>
-            <td><a href="reserva.html">Larry</a></td>
-            <td><a href="reserva.html">the Bird</a></td>
-            <td><a href="reserva.html">@twitter</a></td>
-          </tr>
-        </tbody>
-    </table>
+    <div id="date" style="height:20px; line-height:20px; margin:10px 0 0 0;"></div>
   </div>
 </div>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../js/jquery-1.11.1.min.js"></script>
-    <script src="../js/ie10-viewport-bug-workaround.js"></script>
     <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/docs.min.js"></script>
   </body>
 </html>

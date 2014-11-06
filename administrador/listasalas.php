@@ -14,7 +14,7 @@ include("header.php");
 
 <div class="container">
 <div class="jumbotron">
-  <h1 style="color:#FFFFFF">Remoção de Sala</h1>
+  <h1 style="color:#FFFFFF">Lista de Salas</h1>
   <p style="color:#FFFFFF">Preencha as informações no formulário abaixo</p>
   <!--<p style="color:#FFFFFF"></p> -->
 </div>
@@ -23,7 +23,7 @@ include("header.php");
       <td width="69">Dado da sala:</td>
       <td width="546"><input name="buscarsala" type="text" id="buscarsala" size="20" maxlength="60" onclick="" />
       <p><p><td>Critério: <select name="criterio" id="criterio">
-        <option>Escolha uma tipo</option> 
+        <option disabled>Escolha uma tipo</option> 
         <option value="Numero">Número de sala</option>
         <option value="Setor">Setor</option>
         <option value="Tipo">Tipo de Sala</option>

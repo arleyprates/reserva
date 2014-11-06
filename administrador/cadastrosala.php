@@ -50,7 +50,9 @@ include('header.php');
                 include("../erro.php");
                 $sql = mysql_query("SELECT * FROM setor");
                 while ($result = mysql_fetch_array($sql)){
-                  printf ("<option value=\"$result[cod_setor]\">%s", $result['nome'], "</option>");
+                  $nome = $result['nome'];
+                  $nomeok = utf8_encode($nome);
+                  printf ("<option value=\"$result[cod_setor]\">%s", $nomeok, "</option>");
                 }
                 include("../close_conexao.php");
               ?>
