@@ -15,8 +15,9 @@ $nome = $result[0];
 		if ($cpf == $result[0]){
 			session_start();
 			$_SESSION['user'] = $nome;
-			$_SESSION['tipousuario'] = 0; 
-			header("location: administrador/index.php");
+			$_SESSION['tipousuario'] = 0;
+			$_SESSION['cpf'] = $cpf; 
+			header("location: teste.php");
 			include("close_conexao.php");
 			exit;
 		}
@@ -26,6 +27,7 @@ $nome = $result[0];
 			session_start();
 			$_SESSION['user'] = $nome;
 			$_SESSION['tipousuario'] = 1;
+			$_SESSION['cpf'] = $cpf;
 			header("location: administrador/index.php");
 			include("close_conexao.php");
 			exit;
@@ -36,6 +38,7 @@ $nome = $result[0];
 			session_start();
 			$_SESSION['user'] = $nome;
 			$_SESSION['tipousuario'] = 2;
+			$_SESSION['cpf'] = $cpf;
 			header("location: professor/index.php");
 			include("close_conexao.php");
 			exit;
@@ -43,6 +46,7 @@ $nome = $result[0];
 		session_start();
 		$_SESSION['user'] = $nome;
 		$_SESSION['tipousuario'] = 3;
+		$_SESSION['cpf'] = $cpf;
 		header("location: usuario/index.php");
 		exit;
 	}else {

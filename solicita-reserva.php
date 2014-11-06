@@ -1,5 +1,6 @@
 <?php
 $numsala = $_GET['sala'];
+$data = $_GET['data'];
 include("conexao.php");
 echo $numsala;
 $res = array();
@@ -104,24 +105,27 @@ $dadosSala = mysql_fetch_array($res);
                 </div><!-- /.col-lg-6 -->
               </div><!-- /.row -->
               <div class="input-group">
+                 <form id="reservar" method="post" <?php echo "action=\"reservasala.php?numsala=$numsala&data=$data\""; ?> >
                 <span class="input-group-addon">Horário Início</span>
-                <input type="text" class="form-control" placeholder="18:30">
+                <input type="text" class="form-control" placeholder="18:30" name="Inicio" id="horaInicio" /> <!-- problema aqui!! -->
               </div>
               <div class="input-group">
                 <span class="input-group-addon">Horário Fim</span>
-                <input type="text" class="form-control" placeholder="20:30">
+                <input type="text" class="form-control" placeholder="20:30" name="Fim" id="horaFim" />
               </div>
+            
           </div>
         </div> 
 
         <div class="col-sm-6 blog-main">
           <div class="col-xs-12 col-sm-6 col-md-8">
-              <button type="button" class="btn btn-primary">Reservar</button>
+              <button type="submit" class="btn btn-primary">Reservar</button>
               <button type="button" class="btn btn-danger">Cancelar</button>
           </div>
         </div>
-
+       </form>
       </div>
+
 
     </div>
   </div>
