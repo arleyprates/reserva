@@ -59,7 +59,6 @@ text-align: center;
                   printf("</a></li>");
                   //printf ("<li><a href=\"%s.php\">%s</a></li>", $result['nome']);
                 }
-                include("../close_conexao.php");
               ?>
 </ul>
 </li>
