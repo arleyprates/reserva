@@ -1,13 +1,19 @@
 <?php
 
 include("../conexao.php");
+include("header.php");
 
 header('Content-type: text/html; charset=UTF-8'); 
 
 $busca = $_GET['buscarsala'];
 $tipo = $_GET['criterio'];
 
-
+echo "<div class=\"container\">
+    <div class=\"jumbotron\">
+      <div class=\"container\">
+        <div class=\"row\">
+          <div class=\"col-sm-6 blog-main\">
+            <div class=\"col-xs-12 col-sm-6 col-md-8\">";    
 	if(strcmp($tipo, "Numero") == 0)
 	{
 		$sql = mysql_query("SELECT * FROM sala WHERE sala.nr_sala = $busca");
@@ -37,7 +43,7 @@ $tipo = $_GET['criterio'];
     	{	
     		//echo $row[6];
             echo "</br>";
-            echo "Nome do Setor: ". $row['nome'];
+            echo "Nome do Setor: ". utf8_decode($row['nome']);
             echo "</br>";
     		echo "Número da sala: ". $row['nr_sala'];
             echo "</br>";
@@ -53,7 +59,7 @@ $tipo = $_GET['criterio'];
             echo "Número da sala: ". $row['nr_sala'];
             echo "</br>";
             echo "Capacidade de ". $row['capacidade'] . " alunos";
-            echo "</br>";  
+            echo "</br>";
          }
 	   }
 	}
@@ -73,7 +79,7 @@ $tipo = $_GET['criterio'];
             echo "Numero da sala: ". $row['nr_sala'];
     		echo "</br>";
             echo "Capacidade: ". $row['capacidade'] ." alunos";
-            echo "</br>";
+            echo "</br>";            
     	 }
          else 
          {
@@ -85,13 +91,14 @@ $tipo = $_GET['criterio'];
                 echo "Numero da sala: ". $row['nr_sala'];
                 echo "</br>";
                 echo "Capacidade: ". $row['capacidade'] ." alunos";
-                echo "</br>";      
+                echo "</br>";
             }
          }
 	   }
        	
 	}
-
-
+echo "</div>";
+echo "<script src=\"../js/jquery-1.11.1.min.js\"></script>
+    <script src=\"../js/bootstrap.min.js\"></script>";
 ?>
 
