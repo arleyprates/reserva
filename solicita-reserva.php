@@ -24,7 +24,7 @@ include("header.php")
           <div class="col-xs-12 col-sm-6 col-md-8">
               <h3>Recursos</h3>
               <?php
-              $sql = mysql_query("SELECT sala.nr_sala, nome, categoria FROM utiliza LEFT JOIN (sala, recurso) on (utiliza.nr_sala = sala.nr_sala and utiliza.codigo_recurso = recurso.codigo) WHERE sala.nr_sala = $numsala");
+            $sql = mysql_query("SELECT `nr_sala`, `nome`, `categoria` FROM utiliza LEFT JOIN (sala, recurso) on (utiliza.numero_sala = sala.nr_sala and utiliza.codigo_recurso = recurso.codigo) WHERE `numero_sala` = '$numsala'");
                while($dados = mysql_fetch_array($sql)){
                   $nome = $dados[1];
                   $nomecorreto = utf8_encode($nome);
