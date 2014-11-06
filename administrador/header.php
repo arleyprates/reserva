@@ -55,7 +55,9 @@ text-align: center;
                 $sql = mysql_query("SELECT * FROM setor");
                 while ($result = mysql_fetch_array($sql)){
                   printf("<li><a href='%s.php'>", $result['cod_setor']);
-                  printf("%s", $result['nome']);
+                  $nome = $result['nome'];
+                  $nomeok = utf8_encode($nome);
+                  printf("%s", $nomeok);
                   printf("</a></li>");
                   //printf ("<li><a href=\"%s.php\">%s</a></li>", $result['nome']);
                 }

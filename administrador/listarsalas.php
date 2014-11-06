@@ -42,8 +42,10 @@ echo "<div class=\"container\">
         if(strcmp($row['nome'], utf8_decode($busca)) == 0) 
     	{	
     		//echo $row[6];
+            $nome = $row['nome'];
+            $nomeok = utf8_encode($nome);
             echo "</br>";
-            echo "Nome do Setor: ". utf8_decode($row['nome']);
+            echo "Nome do Setor: ". $nomeok;
             echo "</br>";
     		echo "Número da sala: ". $row['nr_sala'];
             echo "</br>";
@@ -53,8 +55,10 @@ echo "<div class=\"container\">
 
          else if(strcmp("", $busca) == 0)
          {
+            $nome = $row['nome'];
+            $nomeok = utf8_encode($nome);
             echo "</br>";
-            echo "Nome do Setor: ". $row['nome'];
+            echo "Nome do Setor: ". $nomeok;
             echo "</br>";
             echo "Número da sala: ". $row['nr_sala'];
             echo "</br>";
@@ -73,6 +77,7 @@ echo "<div class=\"container\">
     {
         if(strcmp($row['desc'], utf8_decode($busca)) == 0)
     	{	
+            
             echo "</br>";
             echo "Tipo de sala: ". utf8_encode($row['desc']);
     		echo "</br>";

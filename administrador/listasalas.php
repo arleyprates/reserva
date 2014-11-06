@@ -23,7 +23,7 @@ include("header.php");
       <td width="69">Dado da sala:</td>
       <td width="546"><input name="buscarsala" type="text" id="buscarsala" size="20" maxlength="60" onclick="" />
       <p><p><td>Critério: <select name="criterio" id="criterio">
-        <option>Escolha uma tipo</option> 
+        <option disabled>Escolha uma tipo</option> 
         <option value="Numero">Número de sala</option>
         <option value="Setor">Setor</option>
         <option value="Tipo">Tipo de Sala</option>
