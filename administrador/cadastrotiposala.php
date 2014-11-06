@@ -14,7 +14,7 @@ include("header.php");
 <form id="cadastro" name="cadastro" method="post" action="cadastratiposala.php"> <!--  onsubmit="baixarLicitacao(); " -->
   <table width="625" border="0">
     <tr>
-      <td width="69">Tipo de Sala:</td>
+      <td width="69">Código:</td>
       <td width="546"><input name="tipo_sala" type="text" id="tipo_sala" size="20" maxlength="60"/>
         <span class="style1">*</span></td>
     </tr>

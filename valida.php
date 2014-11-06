@@ -17,7 +17,7 @@ $nome = $result[0];
 			$_SESSION['user'] = $nome;
 			$_SESSION['tipousuario'] = 0;
 			$_SESSION['cpf'] = $cpf; 
-			header("location: teste.php");
+			header("location: administrador/index.php");
 			include("close_conexao.php");
 			exit;
 		}
@@ -26,7 +26,6 @@ $nome = $result[0];
 		if ($cpf == $result[0]){
 			session_start();
 			$_SESSION['user'] = $nome;
-
 			$_SESSION['tipousuario'] = 1;
 			$_SESSION['cpf'] = $cpf;
 			header("location: administrador/index.php");
@@ -48,7 +47,8 @@ $nome = $result[0];
 		$_SESSION['user'] = $nome;
 		$_SESSION['tipousuario'] = 3;
 		$_SESSION['cpf'] = $cpf;
-		header("location: usuario/index.php");
+		header("location: index.php");
+		include("location: usuario/header.php");
 		exit;
 	}else {
 		echo "<script>alert('Usuario e Senha Invalida(o)');

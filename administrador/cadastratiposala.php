@@ -28,7 +28,7 @@ if((strcmp ($tipo_sala, "") != 0) && (strcmp ($desc, "") != 0))
 
   if($result)
   {
-    echo "Sala cadastrada com sucesso!";
+    echo "Tipo de Sala cadastrada com sucesso!";
   }
 
   else 

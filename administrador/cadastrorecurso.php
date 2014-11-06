@@ -13,10 +13,6 @@ include("header.php");
 <form id="cadastro" name="cadastro" method="post" action="cadastrarecurso.php"> <!--  onsubmit="baixarLicitacao(); " -->
   <table width="625" border="0">
     <tr>
-      <td width="69">Código do recurso:</td>
-      <td width="546"><input name="codigo" type="text" id="codigo" size="20" maxlength="60" />
-        <span class="style1">*</span></td>
-    </tr>
     <tr>
       <td width="69">Nome:</td>
       <td width="546"><input name="nome" type="text" id="nome" size="20" maxlength="60" />

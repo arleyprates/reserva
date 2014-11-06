@@ -14,23 +14,23 @@ header('Content-type: text/html; charset=UTF-8');
 <?php 
 // RECEBENDO OS DADOS PREENCHIDOS DO FORMULÁRIO !
 
-$codigo  = $_POST ['codigo']; //atribuição do campo "nome" vindo do formulário para variavel  
+//$codigo  = $_POST ['codigo']; //atribuição do campo "nome" vindo do formulário para variavel  
 $nome  = $_POST ['nome']; //atribuição do campo "email" vindo do formulário para variavel
 $categoria  = $_POST ['categoria']; //atribuição do campo "nome" vindo do formulário para variavel  
 $situacao  = $_POST ['situacao']; //atribuição do campo "email" vindo do formulário para variavel
 
 
-if((strcmp ($codigo, "") != 0) && (strcmp ($nome, "") != 0) && (strcmp ($categoria, "") != 0) && (strcmp ($situacao, "") != 0))
+if((strcmp ($nome, "") != 0) && (strcmp ($categoria, "") != 0) && (strcmp ($situacao, "") != 0))
 {
 
-  $query = "INSERT INTO `recurso` ( `codigo` , `nome`, `categoria`, `situacao`) 
-  VALUES ('$codigo', '$nome', '$categoria', '$situacao')";
+  $query = "INSERT INTO `recurso` (`nome`, `categoria`, `situacao`) 
+  VALUES ('$nome', '$categoria', '$situacao')";
   
     $result = mysql_query($query, $conexao);
 
   if($result)
   {
-    echo "Tipo de Sala cadastrada com sucesso!";
+    echo "Recurso cadastrado com sucesso!";
   }
 
   else 

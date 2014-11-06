@@ -13,10 +13,11 @@ echo "<div class=\"container\">
       <div class=\"container\">
         <div class=\"row\">
           <div class=\"col-sm-6 blog-main\">
-            <div class=\"col-xs-12 col-sm-6 col-md-8\">";    
+            <div class=\"col-xs-12 col-sm-6 col-md-8\">";
+            echo "<h2> Resultado</h2>" ;    
 	if(strcmp($tipo, "Numero") == 0)
 	{
-		$sql = mysql_query("SELECT * FROM sala WHERE sala.nr_sala = $busca");
+		$sql = mysql_query("SELECT * FROM `sala` WHERE `nr_sala` = $busca");
 	    $result = mysql_fetch_array($sql);
 		if($result)
 		{

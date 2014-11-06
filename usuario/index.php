@@ -11,6 +11,7 @@ if (empty($_SESSION['user'])){
 }
 ?>
 <!DOCTYPE html>
+
 <html lang="en">
   <head>
     <meta charset="utf-8">

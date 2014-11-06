@@ -20,7 +20,7 @@ if (empty($_SESSION['user'])){
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Web application for booking meeting rooms</title>
+    <title>SIGES - Sistema de gerenciamento de Salas</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -149,7 +149,7 @@ if (empty($_SESSION['user'])){
       <div class="container">
       	<h2>Sr.(a) <?php echo $_SESSION['user'];?><h2>
         <h3>Bem-vindo</h3>
-        <p>This is a web application for booking  meeting rooms.</p>
+        <p>SIGES - Sistema de Gerenciamento de Salas</p>
         <p>
         <form action="javascript:void%200">
           <select name="setor" id="set" size="1">

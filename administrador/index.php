@@ -16,7 +16,7 @@ include('header.php');
     <div class="container">
     	<h2>Sr.(a) <?php echo $_SESSION['user'];?><h2>
       <h3>Bem-vindo</h3>
-      <p>This is a web application for booking  meeting rooms.</p>
+      <p>SIGES - Sistema de Gerenciamento de Salas.</p>
     </div>
 </div>
 <div class="panel panel-default">
