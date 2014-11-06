@@ -14,7 +14,7 @@ include("header.php");
 
 <div class="container">
 <div class="jumbotron">
-  <h1 style="color:#FFFFFF">Remoção de Sala</h1>
+  <h1 style="color:#FFFFFF">Lista de Salas</h1>
   <p style="color:#FFFFFF">Preencha as informações no formulário abaixo</p>
   <!--<p style="color:#FFFFFF"></p> -->
 </div>
