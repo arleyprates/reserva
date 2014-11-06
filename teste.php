@@ -7,6 +7,8 @@ include("header.php");
     <div class="jumbotron">
       <div class="container">
         <h1>Hello!</h1>
+        <p>This is a web application for booking  meeting rooms.</p>
+        <p>
         <form action="javascript:void%200">
           <select name="setor" id="set" size="1">
             <?php
@@ -25,7 +27,7 @@ include("header.php");
               //}
             ?>
           </select>
-        </form>
+        </form></p>
         <p><a class="btn btn-primary btn-lg" role="button" href="login.html">Login &raquo;</a></p>
       </div>
     </div>
