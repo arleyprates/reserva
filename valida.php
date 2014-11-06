@@ -26,7 +26,7 @@ $nome = $result[0];
 		if ($cpf == $result[0]){
 			session_start();
 			$_SESSION['user'] = $nome;
-<<<<<<< HEAD
+
 			$_SESSION['tipousuario'] = 1;
 			$_SESSION['cpf'] = $cpf;
 			header("location: administrador/index.php");
